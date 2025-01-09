@@ -10,7 +10,6 @@ from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import os
 
 # Optional: add contact me email functionality (Day 60)
@@ -37,27 +36,26 @@ Bootstrap5(app)
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.html", status="home")
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
-
-
-@app.route("/contact", methods=["GET", "POST"])
-def contact():
-    return render_template("contact.html")
+    return render_template("about.html", status="about")
 
 
 @app.route("/resume", methods=["GET", "POST"])
 def resume():
-    return render_template("resume.html")
+    return render_template("resume.html", status="resume")
 
 
 @app.route('/download')
 def download():
-    return send_from_directory('static', path="LydiaKidwell_Resume_2025.pdf")
+    return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
+
+@app.route("/projects")
+def projects():
+    return render_template("projects.html", status="projects")
 
 
 MAIL_ADDRESS = os.environ.get("MY_EMAIL")
@@ -69,8 +67,8 @@ def contact():
     if request.method == "POST":
         data = request.form
         send_email(data["name"], data["email"], data["phone"], data["message"])
-        return render_template("contact.html", msg_sent=True)
-    return render_template("contact.html", msg_sent=False)
+        return render_template("contact.html", msg_sent=True, status="contact")
+    return render_template("contact.html", msg_sent=False, status="contact")
 
 
 def send_email(name, email, phone, message):
