@@ -33,6 +33,32 @@ app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
+# CREATE DATABASE
+class Base(DeclarativeBase):
+    pass
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///posts.db"
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
+
+
+# Configure Project Table
+class Projects(db.Model):
+    __tablename__ = "projects"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
+    subtitle: Mapped[str] = mapped_column(String(250), nullable=False)
+    date: Mapped[str] = mapped_column(String(250), nullable=False)
+    description: Mapped[str] = mapped_column(Text, nullable=False)
+    img_url: Mapped[str] = mapped_column(String(250), nullable=False)
+    file: Mapped[str] = mapped_column(String(250), nullable=False)
+    github_url: Mapped[str] = mapped_column(String(250), nullable=False)
+
+with app.app_context():
+    db.create_all()
+
+
 
 @app.route('/')
 def home():
@@ -41,7 +67,9 @@ def home():
 
 @app.route("/about")
 def about():
-    return render_template("about.html", status="about")
+    with open("static/files/about.txt", mode="r") as about_file:
+        about_text = about_file.read()
+    return render_template("about.html", status="about", about_text=about_text)
 
 
 @app.route("/resume", methods=["GET", "POST"])
@@ -53,9 +81,12 @@ def resume():
 def download():
     return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
 
-@app.route("/projects")
+
+@app.route('/projects')
 def projects():
-    return render_template("projects.html", status="projects")
+    result = db.session.execute(db.select(Projects))
+    all_projects = result.scalars().all()
+    return render_template("projects.html", all_projects=all_projects, status="projects")
 
 
 MAIL_ADDRESS = os.environ.get("MY_EMAIL")

@@ -285,7 +285,7 @@ a:focus {
 }
 
 .slider_section .detail-box p {
-  color: #fefefe;
+  color: #f0f6ee;
   font-size: 14px;
 }
 
@@ -398,11 +398,11 @@ a:focus {
   background-color: #00bbf0;
 }
 
-.service_section {
+.resume_section {
   position: relative;
 }
 
-.service_section .box {
+.resume_section .box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -420,7 +420,7 @@ a:focus {
   border-radius: 5px;
 }
 
-.service_section .box .img-box {
+.resume_section .box .img-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -436,28 +436,28 @@ a:focus {
   margin-bottom: 15px;
 }
 
-.service_section .box .img-box img {
+.resume_section .box .img-box img {
   max-width: 100%;
   max-height: 100%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-.service_section .box .detail-box h5 {
+.resume_section .box .detail-box h5 {
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.service_section .box .detail-box a {
+.resume_section .box .detail-box a {
   color: #00204a;
   font-weight: 600;
 }
 
-.service_section .box .detail-box a:hover {
+.resume_section .box .detail-box a:hover {
   color: #00bbf0;
 }
 
-.service_section .btn-box {
+.resume_section .btn-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -467,7 +467,7 @@ a:focus {
   margin-top: 45px;
 }
 
-.service_section .btn-box a {
+.resume_section .btn-box a {
   display: inline-block;
   padding: 10px 45px;
   background-color: #00bbf0;
@@ -478,7 +478,7 @@ a:focus {
   border: none;
 }
 
-.service_section .btn-box a:hover {
+.resume_section .btn-box a:hover {
   background-color: #007fa4;
 }
 
@@ -928,3 +928,8 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.pdf {
+
+    aspect-ratio: 4/3;
+}
