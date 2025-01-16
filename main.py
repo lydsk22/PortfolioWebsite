@@ -11,6 +11,7 @@ from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from socket import gethostname
 
 # Optional: add contact me email functionality (Day 60)
 import smtplib
@@ -54,10 +55,6 @@ class Projects(db.Model):
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
     file: Mapped[str] = mapped_column(String(250), nullable=False)
     github_url: Mapped[str] = mapped_column(String(250), nullable=False)
-
-with app.app_context():
-    db.create_all()
-
 
 
 @app.route('/')
@@ -111,4 +108,6 @@ def send_email(name, email, phone, message):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    db.create_all()
+    if 'liveconsole' not in gethostname():
+        app.run(debug=True, port=5001)
