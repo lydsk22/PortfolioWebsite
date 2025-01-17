@@ -1,0 +1,73 @@
+{% block content %}
+{% include "header.html" %}
+
+<!-------body------>
+
+<body class="sub_page">
+
+<div class="hero_area">
+
+    <div class="hero_bg_box">
+        <div class="bg_img_box">
+            <img src="images/hero-bg.png" alt="">
+        </div>
+    </div>
+
+    {% include "navbar.html" %}
+</div>
+
+<!-- team section -->
+<section class="team_section layout_padding">
+    <div class="container-fluid">
+        <div class="heading_container heading_center">
+            <h2>
+                Lydia's <span>Projects</span>
+            </h2>
+            <h5>
+                Data Analysis, Web Design & Development, and Game Design
+            </h5>
+        </div>
+
+        <div class="team_container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="box">
+                        {% for project in all_projects %}
+
+                        <div class="detail-box">
+                            <h4>
+                                {{project.title}}
+                            </h4>
+
+                            <div class="img-box">
+                                <img src={{project.img_url}} class="img1"
+                                     alt="This website runs on green hosting - verified by thegreenwebfoundation.org">
+                            </div>
+                            <p>
+                                {{project.description[3:project.description.find(".")]}}...
+                                <a href="{{ url_for('show_project', project_id=project.id) }}">read more</a>
+                            </p>
+                            <h5>
+                                Completed {{project.date_finished}}
+                            </h5>
+
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+<!-- end team section -->
+
+<!-- info section -->
+{% include "footer_info.html" %}
+
+
+<!-- footer -->
+{% include "footer.html" %}
+{% endblock %}
