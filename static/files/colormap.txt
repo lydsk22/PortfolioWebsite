@@ -1,0 +1,27 @@
+old/came with template:
+#0c0c0c (almost black)
+#00bbf0 (med blue, color of resume heading text)
+initial (unk.)
+#ffffff (white)
+#00204a (navy blue, color of home page top background)
+#fefefe (almost white, background of why choose us section on home page)
+#007fa4 (teal, home page read more button hover color ei dark version of 00bbf0)
+#000000 (black, can leave as is)
+#f8f8f9 (light grey, background of resume box)
+
+
+in style.scss:
+$primary1: #00bbf0;
+$primary2: #00204a;
+$textCol: #1f1f1f;
+
+test1 - purples:
+$primary1: #8E3AFC;
+$primary2: #4D2285;
+$textCol: #f0f6ee;
+
+test2 - accessibility purples:
+$primary1: #e1cbfc;
+$primary2: #4D2285;
+$textCol: #f0f6ee;
+#9565d0 (med purple for hover read more button on home page)
