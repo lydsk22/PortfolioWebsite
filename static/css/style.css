@@ -507,6 +507,7 @@ a:focus {
 
 .about_section .detail-box p {
   margin-top: 15px;
+  text-align: start;
 }
 
 .about_section .detail-box a {
