@@ -7,7 +7,7 @@ body {
 }
 
 .layout_padding {
-  padding: 90px 0;
+  padding: 45px 0;
 }
 
 .layout_padding2 {
@@ -46,7 +46,11 @@ body {
 .heading_container h2 {
   position: relative;
   font-weight: bold;
-  margin-bottom: 0;
+  margin-bottom: 5px;
+}
+.heading_container h5 {
+  position: relative;
+  margin-bottom: 0px;
 }
 
 .heading_container h2 span {
@@ -614,16 +618,16 @@ a:focus {
 }
 
 .team_section .team_container {
-  padding: 0 15px;
+  padding: 10px 10px 10px 10px;
 }
 
 .team_section .team_container .box {
-  padding: 35px 0 0 0;
-  border-radius: 5px;
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
   overflow: hidden;
   -webkit-transition: all .1s;
   transition: all .1s;
-  margin-top: 45px;
+  margin-top: 25px;
   background: -webkit-gradient(linear, left top, left bottom, from(#002759), to(#002b64));
   background: linear-gradient(to bottom, #002759, #002b64);
 }
@@ -641,38 +645,29 @@ a:focus {
 }
 
 .team_section .team_container .box .img-box img {
-  width: 120px;
-  border-radius: 100%;
-  border: 5px solid #ffffff;
+  max-width: 175px;
+  margin: 10px 15px;
 }
 
-.team_section .team_container .box .detail-box {
-  margin: 25px 0;
-}
-
-.team_section .team_container .box .detail-box h5 {
-  color: #00bbf0;
-  font-weight: 600;
-  position: relative;
-}
-
-.team_section .team_container .box .social_box {
-  padding: 10px 45px 20px 45px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.team_section .team_container .box .social_box a {
+.team_section .team_container .box  h4 {
   color: #ffffff;
-  font-size: 22px;
+  position: relative;
+  margin: 0 0 0 0;
 }
 
-.team_section .team_container .box .social_box a:hover {
+.team_section .team_container .box  h5 {
   color: #00bbf0;
+  font-weight: 500;
+  position: relative;
+  font-size: 1rem;
+  margin: 0 0 0 0;
+}
+.team_section .team_container .box  p {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+
+  position: relative;
+
 }
 
 /*team section end*/
