@@ -11,6 +11,7 @@ from wtforms.fields.choices import SelectField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 from socket import gethostname
+from dotenv import load_dotenv
 
 # Optional: add contact me email functionality (Day 60)
 import smtplib
@@ -142,7 +143,7 @@ def show_project(project_id):
 
 
 MAIL_ADDRESS = os.environ.get("MY_EMAIL")
-MAIL_APP_PW = os.environ.get("MY_EMAIL_PASS")
+MAIL_APP_PW = os.environ.get("EMAIL_APP_PASS")
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -150,19 +151,17 @@ def contact():
     if request.method == "POST":
         data = request.form
         send_email(data["name"], data["email"], data["phone"], data["message"])
-        return render_template("contact.html", msg_sent=True, status="contact")
-    return render_template("contact.html", msg_sent=False, status="contact")
+        return render_template("contact_form.html", msg_sent=True, status="contact")
+    return render_template("contact_form.html", msg_sent=False, status="contact")
 
 
 def send_email(name, email, phone, message):
     email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nMessage:{message}"
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(MAIL_ADDRESS, MAIL_APP_PW)
-        connection.sendmail(MAIL_ADDRESS, MAIL_APP_PW, email_message)
+        connection.login(user=MAIL_ADDRESS, password=MAIL_APP_PW)
+        connection.sendmail(from_addr=email, to_addrs=MAIL_ADDRESS, msg=email_message)
 
 
 if __name__ == "__main__":
-    print(os.environ.get('SECRET_URL'))
     app.run(debug=True, port=5001)
-    print(os.environ.get('SECRET_URL'))

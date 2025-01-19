@@ -16,8 +16,8 @@
     {% include "navbar.html" %}
 </div>
 
-<!-- team section -->
-<section class="team_section layout_padding">
+<!-- project section -->
+<section class="project_section layout_padding">
     <div class="container-fluid">
         <div class="heading_container heading_center">
             <h2>
@@ -26,19 +26,21 @@
             <h5>
                 Completed {{project.date_finished}}
             </h5>
-            <p>
-                {{project.description[3:-4]}}
-            </p>
-            <div class="img-box">
-                <img src={{project.img_url}} class="img1"
-                     alt="This website runs on green hosting - verified by thegreenwebfoundation.org">
+            <div class="box">
+                <p>
+                    {{project.description[3:-4]}}
+                </p>
+                <div class="img-box">
+                    <img src={{project.img_url}} class="img1"
+                         alt="This website runs on green hosting - verified by thegreenwebfoundation.org">
+                </div>
             </div>
         </div>
     </div>
 </section>
 </body>
 
-<!-- end team section -->
+<!-- end project section -->
 
 <!-- info section -->
 {% include "footer_info.html" %}
