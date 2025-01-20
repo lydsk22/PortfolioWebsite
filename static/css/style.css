@@ -7,19 +7,11 @@ body {
 }
 
 .layout_padding {
-  padding: 45px 0;
+  padding: 45px 45px 20px 45px;
 }
 
 .layout_padding2 {
-  padding: 75px 0;
-}
-
-.layout_padding2-top {
-  padding-top: 75px;
-}
-
-.layout_padding2-bottom {
-  padding-bottom: 75px;
+  padding: 25px 45px 25px 45px;
 }
 
 .layout_padding-top {
@@ -30,6 +22,14 @@ body {
   padding-bottom: 90px;
 }
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
 .heading_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -682,7 +682,6 @@ a:focus {
 .info_section {
   background-color: #00204a;
   color: #ffffff;
-  padding: 45px 0 15px 0;
 }
 
 .info_section h4 {
@@ -691,7 +690,7 @@ a:focus {
 }
 
 .info_section .info_col {
-  margin-bottom: 30px;
+
 }
 
 .info_section .info_contact .contact_link_box {

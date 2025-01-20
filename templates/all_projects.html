@@ -44,7 +44,8 @@
                                      alt="This website runs on green hosting - verified by thegreenwebfoundation.org">
                             </div>
                             <p>
-                                {{project.description[3:project.description.find(".")]}}...
+                                {{project.description[3:project.description.find(".")+1]|safe}}...
+
                                 <a href="{{ url_for('show_project', project_id=project.id) }}">read more</a>
                             </p>
                             <h5>
