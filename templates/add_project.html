@@ -1,5 +1,4 @@
 {% from "bootstrap5/form.html" import render_form %}
-{% block content %}
 {% include "header.html" %}
 
 
@@ -20,32 +19,19 @@
 
 <!-- project section -->
 <section class="project_section layout_padding">
-    <div class="container-fluid">
-        <div class="heading_container heading_center">
-            <h2 class="">
-                Our <span> project</span>
-            </h2>
-        </div>
-
-        <main class="mb-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-                        {{ ckeditor.load() }}
-                        {{ ckeditor.config(name='description') }}
-                        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
-                    </div>
-                </div>
-            </div>
-        </main>
+    <div class="heading_container heading_center">
+        <h2 class="">
+            Add a <span>Project</span>
+        </h2>
+    </div>
+    <div class="project_container">
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='description') }}
+        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
     </div>
 </section>
 <!-- end project section -->
-
-<!-- info section -->
-{% include "footer_info.html" %}
-
+</body>
 
 <!-- footer -->
 {% include "footer.html" %}
-{% endblock %}

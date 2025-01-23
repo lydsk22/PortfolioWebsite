@@ -27,7 +27,7 @@ hr {
     height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
-    margin: 1em 0;
+    margin: 0;
     padding: 0;
 }
 .heading_container {
@@ -418,10 +418,8 @@ a:focus {
           flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  text-align: center;
-  margin-top: 45px;
-  background-color: #f8f8f9;
+          align-items: left;
+  text-align: left;
   padding: 20px;
   border-radius: 5px;
 }
@@ -449,14 +447,8 @@ a:focus {
   transition: all 0.3s;
 }
 
-.resume_section .box .detail-box h5 {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.resume_section .box .detail-box a {
-  color: #00204a;
-  font-weight: 600;
+.resume_section .row .detail-box {
+  margin: 25px 25px 25px 25px;
 }
 
 .resume_section .box .detail-box a:hover {
@@ -486,6 +478,8 @@ a:focus {
 
 .resume_section .btn-box a:hover {
   background-color: #007fa4;
+}
+
 }
 /* end resume section */
 
@@ -576,14 +570,6 @@ a:focus {
   fill: #00204a;
 }
 
-.contact_section .box h5 {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.contact_section .box p {
-  margin-bottom: 0;
-}
 
 .contact_section .btn-box {
   display: -webkit-box;
@@ -664,18 +650,35 @@ a:focus {
 
 .project_section .project_container .box  h5 {
   color: #00bbf0;
-  font-weight: 500;
   position: relative;
-  font-size: 1rem;
   margin: 0 0 0 0;
 }
+
 .project_section .project_container .box  p {
   color: #ffffff;
   margin: 0 0 10px 0;
-
   position: relative;
+}
+
+.project_section .project_container .box .project-date p {
+  color: #00bbf0;
+  margin: 0 0 10px 0;
+  position: relative;
+}
+
+.project_section .project_container .mb-3{
+  color: #ffffff;
+  position: relative;
+  margin: 10px 0 10px 0;
+  text-align: left;
+  padding: 0px 0px 0px 0px;
+}
+
+.project_section .project_container .mb-3 .form-label{
+  margin: 10px 0 0px 0;
 
 }
+
 /* end project section*/
 
 /* start info section */
@@ -687,10 +690,6 @@ a:focus {
 .info_section h4 {
   font-weight: 600;
   margin-bottom: 20px;
-}
-
-.info_section .info_col {
-
 }
 
 .info_section .info_contact .contact_link_box {
@@ -713,34 +712,6 @@ a:focus {
 }
 
 .info_section .info_contact .contact_link_box a:hover {
-  color: #00bbf0;
-}
-
-.info_section .info_social {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.info_section .info_social a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #ffffff;
-  border-radius: 100%;
-  margin-right: 10px;
-  font-size: 24px;
-}
-
-.info_section .info_social a:hover {
   color: #00bbf0;
 }
 
@@ -771,49 +742,6 @@ a:focus {
   color: #00bbf0;
 }
 
-.info_section form input {
-  border: none;
-  border-bottom: 1px solid #ffffff;
-  background-color: transparent;
-  width: 100%;
-  height: 45px;
-  color: #ffffff;
-  outline: none;
-}
-
-.info_section form input::-webkit-input-placeholder {
-  color: #ffffff;
-}
-
-.info_section form input:-ms-input-placeholder {
-  color: #ffffff;
-}
-
-.info_section form input::-ms-input-placeholder {
-  color: #ffffff;
-}
-
-.info_section form input::placeholder {
-  color: #ffffff;
-}
-
-.info_section form button {
-  width: 100%;
-  text-align: center;
-  display: inline-block;
-  padding: 10px 55px;
-  background-color: #00bbf0;
-  color: #ffffff;
-  border-radius: 0;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: none;
-  margin-top: 15px;
-}
-
-.info_section form button:hover {
-  background-color: #007fa4;
-}
 /* end info section */
 
 /* footer section*/

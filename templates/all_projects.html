@@ -1,4 +1,3 @@
-{% block content %}
 {% include "header.html" %}
 
 <!-------body------>
@@ -30,33 +29,43 @@
 
         <div class="project_container">
             <div class="row">
+                {% for project in all_projects %}
                 <div class="col-lg-3 col-sm-6">
                     <div class="box">
-                        {% for project in all_projects %}
-
                         <div>
+                            {% if project.subtitle != "" %}
+                            <h4>
+                                {{project.title}}:
+                            </h4>
+                            <h5>
+                                {{project.subtitle}}
+                            </h5>
+                            {%else%}
                             <h4>
                                 {{project.title}}
                             </h4>
-
+                            {% endif %}
                             <div class="img-box">
                                 <img src={{project.img_url}} class="img1"
                                      alt="This website runs on green hosting - verified by thegreenwebfoundation.org">
                             </div>
-                            <p>
-                                {{project.description[3:project.description.find(".")+1]|safe}}...
 
-                                <a href="{{ url_for('show_project', project_id=project.id) }}">read more</a>
+                            <p>
+                                {{' '.join(project.description.split()[:10])|safe}}...
+
+                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
                             </p>
-                            <h5>
-                                Completed {{project.date_finished}}
-                            </h5>
+                            <div class="project-date">
+                                <p>
+                                    Completed {{project.date_finished}}
+                                </p>
+                            </div>
 
                         </div>
-
-                        {% endfor %}
                     </div>
                 </div>
+                {% endfor %}
+
             </div>
         </div>
     </div>
@@ -65,10 +74,7 @@
 
 <!-- end project section -->
 
-<!-- info section -->
-{% include "footer_info.html" %}
 
 
 <!-- footer -->
 {% include "footer.html" %}
-{% endblock %}
