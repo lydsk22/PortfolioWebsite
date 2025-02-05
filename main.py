@@ -14,10 +14,13 @@ from wtforms.fields.simple import EmailField, URLField
 from wtforms.validators import DataRequired, URL
 from socket import gethostname
 from dotenv import load_dotenv
+import MySQLdb
 import smtplib
 
+load_dotenv()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+app.config['SECRET_KEY'] = os.getenv('FLASK_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -27,13 +30,22 @@ class Base(DeclarativeBase):
 	pass
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///projects.db"
-db = SQLAlchemy(model_class=Base)
-db.init_app(app)
+mysql_username = os.getenv('MYSQL_USERNAME')
+mysql_password = os.getenv('MYSQL_PASSWORD')
+mysql_hostname = os.getenv('MYSQL_HOSTNAME')
+mysql_databasename = os.getenv('MYSQL_DATABASENAME')
+
+SQLAlCHEMY_DATABASE_URI = f"mysql+mysqldb://{mysql_username}:{mysql_password}@{mysql_hostname}/{mysql_databasename}"
+# print(SQLAlCHEMY_DATABASE_URI)
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLAlCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 280}
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app, model_class=Base)
+# db.init_app(app)
 
 
 # Configure Project Table
-class Projects(db.Model):
+class Project(db.Model):
 	__tablename__ = "projects"
 	id: Mapped[int] = mapped_column(Integer, primary_key=True)
 	title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
@@ -44,10 +56,6 @@ class Projects(db.Model):
 	tags: Mapped[str] = mapped_column(Text, nullable=True)
 	img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 	github_url: Mapped[str] = mapped_column(String(250), nullable=False)
-
-
-with app.app_context():
-	db.create_all()
 
 
 # WTForm for creating a blog post
@@ -97,7 +105,9 @@ def home():
 
 @app.route("/about")
 def about():
-	with open("static/files/about.txt", mode="r") as about_file:
+	# for pythonanywhere
+	with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
+		# 	with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
 	return render_template("about.html", status="about", about_text=about_text)
@@ -115,18 +125,17 @@ def download():
 
 @app.route('/projects')
 def projects():
-	result = db.session.execute(db.select(Projects))
+	result = db.session.execute(db.select(Project))
 	all_projects = result.scalars().all()
 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
 
 
-# @app.route(f"/{os.environ.get('SECRET_URL')}", methods=["GET", "POST"])
 @app.route("/add-project", methods=["GET", "POST"])
 @check_pw
 def add_project():
 	form = CreateProjectForm()
 	if form.validate_on_submit():
-		new_project = Projects(
+		new_project = Project(
 				title=form.title.data,
 				subtitle=form.subtitle.data,
 				category=form.category.data,
@@ -145,7 +154,7 @@ def add_project():
 @app.route("/edit-project-<int:project_id>", methods=["GET", "POST"])
 @check_pw
 def edit_project(project_id):
-	project = db.get_or_404(Projects, project_id)
+	project = db.get_or_404(Project, project_id)
 	edit_form = CreateProjectForm(
 			title=project.title,
 			subtitle=project.subtitle,
@@ -176,13 +185,13 @@ def edit_project(project_id):
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
-	requested_project = db.get_or_404(entity=Projects, ident=project_id, description="This project does not exist.")
+	requested_project = db.get_or_404(entity=Project, ident=project_id, description="This project does not exist.")
 
 	return render_template("project.html", project=requested_project, status="projects")
 
 
-MAIL_ADDRESS = os.environ.get("MY_EMAIL")
-MAIL_APP_PW = os.environ.get("EMAIL_APP_PASS")
+MAIL_ADDRESS = os.getenv("MY_EMAIL")
+MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -217,6 +226,7 @@ def login():
 @app.context_processor
 def add_year():
 	return {"current_year": str(datetime.datetime.now().year)}
+
 
 if __name__ == "__main__":
 	db.create_all()

@@ -16,8 +16,10 @@ from socket import gethostname
 from dotenv import load_dotenv
 import smtplib
 
+load_dotenv()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+app.config['SECRET_KEY'] = os.getenv('FLASK_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -43,6 +45,7 @@ class Projects(db.Model):
 	description: Mapped[str] = mapped_column(Text, nullable=False)
 	tags: Mapped[str] = mapped_column(Text, nullable=True)
 	img_url: Mapped[str] = mapped_column(String(250), nullable=False)
+	img_alt_text: Mapped[str] = mapped_column(String(250), nullable=True)
 	github_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
@@ -62,6 +65,7 @@ class CreateProjectForm(FlaskForm):
 	description = CKEditorField("Project Description", validators=[DataRequired()])
 	tags = StringField("Project Tags (separate with ','")
 	img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
+	img_alt_text = StringField("Alt Text for Image", validators=[DataRequired()])
 	github_url = URLField("Github URL")
 	submit = SubmitField("Submit Project")
 
@@ -97,7 +101,9 @@ def home():
 
 @app.route("/about")
 def about():
-	with open("static/files/about.txt", mode="r") as about_file:
+	# for pythonanywhere
+	# with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
+	with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
 	return render_template("about.html", status="about", about_text=about_text)
@@ -120,7 +126,7 @@ def projects():
 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
 
 
-# @app.route(f"/{os.environ.get('SECRET_URL')}", methods=["GET", "POST"])
+# @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
 @app.route("/add-project", methods=["GET", "POST"])
 @check_pw
 def add_project():
@@ -134,6 +140,7 @@ def add_project():
 				description=form.description.data,
 				tags=form.tags.data,
 				img_url=form.img_url.data,
+				img_alt_text=form.img_alt_text.data,
 				github_url=form.github_url.data
 				)
 		db.session.add(new_project)
@@ -154,6 +161,7 @@ def edit_project(project_id):
 			description=project.description,
 			tags=project.tags,
 			img_url=project.img_url,
+			img_alt_text=project.img_alt_text,
 			github_url=project.github_url
 			)
 	if edit_form.validate_on_submit():
@@ -164,6 +172,7 @@ def edit_project(project_id):
 		project.description = edit_form.description.data
 		project.tags = edit_form.tags.data
 		project.img_url = edit_form.img_url.data
+		project.img_alt_text = edit_form.img_alt_text.data
 		project.github_url = edit_form.github_url.data
 
 		db.session.commit()
@@ -181,8 +190,8 @@ def show_project(project_id):
 	return render_template("project.html", project=requested_project, status="projects")
 
 
-MAIL_ADDRESS = os.environ.get("MY_EMAIL")
-MAIL_APP_PW = os.environ.get("EMAIL_APP_PASS")
+MAIL_ADDRESS = os.getenv("MY_EMAIL")
+MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
 
 
 @app.route("/contact", methods=["GET", "POST"])

@@ -168,3 +168,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+#local testing
+main_local.py
+
