@@ -23,7 +23,11 @@
                 {{project.title}}
             </h2>
             <h5>
+                {% if project.date_finished == "":%}
+                Not Yet Completed
+                {% else %}
                 Completed {{project.date_finished}}
+                {% endif %}
             </h5>
         </div>
         <div class="row box">
@@ -36,12 +40,13 @@
             <div class="col-lg-12">
                 <div class="img-box">
                     <a href="">
-                        <img src={{project.img_url}} class="img"
+                        <img src={{project.img_url}} class="img1"
                              alt={{project.img_alt_text}}>
                     </a>
                 </div>
             </div>
         </div>
+
         <div class="row box">
             <div class="col-lg-12">
                 <p>See this project on

@@ -87,6 +87,14 @@ a:focus {
           box-shadow: none;
 }
 
+.img1 {
+    max-height: 300px;
+}
+
+.img2 {
+    max-height: 100px;
+}
+
 /*header section*/
 .hero_area {
   position: relative;
@@ -763,6 +771,8 @@ a:focus {
 /*# sourceMappingURL=style.css.map */
 
 .pdf {
-
+    -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
     aspect-ratio: 4/3;
 }
