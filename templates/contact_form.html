@@ -26,7 +26,7 @@
         {% endif %}
     </div>
     <div class="contact_container">
-        {{ ckeditor.load() }}
+        {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
         {{ ckeditor.config(name='description') }}
         {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
     </div>

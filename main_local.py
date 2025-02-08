@@ -111,7 +111,7 @@ def about():
 
 @app.route("/resume", methods=["GET", "POST"])
 def resume():
-	return render_template("resume.html", status="resume")
+	return render_template("resume_style.html", status="resume")
 
 
 @app.route('/download')
