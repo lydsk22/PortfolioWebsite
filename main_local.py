@@ -123,7 +123,7 @@ def download():
 def projects():
 	result = db.session.execute(db.select(Projects))
 	all_projects = result.scalars().all()
-	return render_template("all_projects.html", all_projects=all_projects, status="projects")
+	return render_template("all_projects_copy.html", all_projects=all_projects, status="projects")
 
 
 # @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])

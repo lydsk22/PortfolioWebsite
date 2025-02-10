@@ -91,9 +91,6 @@ a:focus {
     max-height: 300px;
 }
 
-.img2 {
-    max-height: 100px;
-}
 
 /*header section*/
 .hero_area {
@@ -647,13 +644,22 @@ a:focus {
 
 .project_section .project_container .box .img-box img {
   max-width: 175px;
-  margin: 10px 15px;
+  margin: 0px 15px;
+  max-height: 100px;
 }
+
+.project_section .project_container .box .row{
+  flex-wrap: nowrap;
+  text-align: left;
+  margin: 10px;
+}
+
+
 
 .project_section .project_container .box  h4 {
   color: #ffffff;
   position: relative;
-  margin: 0 0 0 0;
+  margin: 0;
 }
 
 .project_section .project_container .box  h5 {
@@ -664,14 +670,15 @@ a:focus {
 
 .project_section .project_container .box  p {
   color: #ffffff;
-  margin: 0 0 10px 0;
+  margin: 0px 15px;
   position: relative;
 }
 
 .project_section .project_container .box .project-date p {
   color: #00bbf0;
-  margin: 0 0 10px 0;
+  margin: 10px;
   position: relative;
+  text-align: left;
 }
 
 .project_section .project_container .mb-3{

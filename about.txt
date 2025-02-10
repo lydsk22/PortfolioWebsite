@@ -1,11 +1,8 @@
-Lydia is an environmental data analyst who lives in Reston, VA with her husband and their cat. Having grown up in a house full of nerds (a term used lovingly), she has always had an interest in STEM but
-her passion for sustainability wasn't discovered until college when her academic advisor suggested she pick up a minor in green engineering. That, combined with her introduction to data analysis during her
-time as a civil engineer at Timmons Group, has driven her to pursue a career in environmental data analysis.
+Hi! I'm Lydia, an environmental data analyst based in Reston, VA with my husband and our cat. I discovered my passion for data analysis
+during my time at Timmons Group as a Project Engineer on the Economic Development team. That, combined with my B.S. in Biological Systems
+Engineering from Virginia Tech (go hokies!), has lead me to pursue a career in environmental data analysis.
 
-CHUNKShe has spent months improving her coding and data analysis skills by taking classes on Udemy and Linkedin Learning,
-as well as working with her career coach to obtain a Military Spouse Career Accelerator Pilot (MSCAP) fellowship with Hiring our Heroes to gain additional professional experience in the field.
-
-CHUNKIf she's ever not on her computer, she's probably volunteering with the Feline Foundation of Greater Washington, cooking and listening to Stephen King books on Audible, or watching movies with her husband.
-In January 2025 she'll also start volunteering with Pet FBI and beginning her fellowship with Hiring our Heroes.
-
-
+CHUNKMy husband and I moved to northern Virginia in August 2024, and since then I have been taking online courses on Udemy and Linkedin Learning
+to develop my data analysis skills, participating in professional development opportunities as candidate for the Hiring Our Heroes Military Spouse Fellowship,
+and volunteering with the Feline Foundation of Greater Washington and Pet FBI (Lost Cats Virginia), and exploring data through personal projects. Check
+them out on <a href="lydiak22.pythonanywhere.com/projects"> my projects page! </a>.
