@@ -100,17 +100,14 @@ def check_pw(func):
 
 @app.route('/')
 def home():
-	return render_template("index.html", status="home")
-
-
-@app.route("/about")
-def about():
 	# for pythonanywhere
-	with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
-		# 	with open("about.txt", mode="r") as about_file:
+	# with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
+	with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
-	return render_template("about.html", status="about", about_text=about_text)
+	result = db.session.execute(db.select(Project))
+	all_projects = result.scalars().all()
+	return render_template("index.html", status="home", about_text=about_text, all_projects=all_projects)
 
 
 @app.route("/resume", methods=["GET", "POST"])
@@ -127,9 +124,10 @@ def download():
 def projects():
 	result = db.session.execute(db.select(Project))
 	all_projects = result.scalars().all()
-	return render_template("all_projects.html", all_projects=all_projects, status="projects")
+	return render_template("all_projects_copy.html", all_projects=all_projects, status="projects")
 
 
+# @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
 @app.route("/add-project", methods=["GET", "POST"])
 @check_pw
 def add_project():
@@ -143,6 +141,7 @@ def add_project():
 				description=form.description.data,
 				tags=form.tags.data,
 				img_url=form.img_url.data,
+				img_alt_text=form.img_alt_text.data,
 				github_url=form.github_url.data
 				)
 		db.session.add(new_project)
@@ -163,6 +162,7 @@ def edit_project(project_id):
 			description=project.description,
 			tags=project.tags,
 			img_url=project.img_url,
+			img_alt_text=project.img_alt_text,
 			github_url=project.github_url
 			)
 	if edit_form.validate_on_submit():
@@ -173,6 +173,7 @@ def edit_project(project_id):
 		project.description = edit_form.description.data
 		project.tags = edit_form.tags.data
 		project.img_url = edit_form.img_url.data
+		project.img_alt_text = edit_form.img_alt_text.data
 		project.github_url = edit_form.github_url.data
 
 		db.session.commit()

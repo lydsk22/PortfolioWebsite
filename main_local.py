@@ -101,12 +101,14 @@ def home():
 	with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
-	return render_template("index.html", status="about", about_text=about_text)
+	result = db.session.execute(db.select(Projects))
+	all_projects = result.scalars().all()
+	return render_template("index.html", status="home", about_text=about_text, all_projects=all_projects)
 
 
 @app.route("/resume", methods=["GET", "POST"])
 def resume():
-	return render_template("resume_style.html", status="resume")
+	return render_template("resume.html", status="resume")
 
 
 @app.route('/download')
