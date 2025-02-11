@@ -504,8 +504,17 @@ a:focus {
           align-items: center;
 }
 
+.about_section .img-box {
+    display: flex;
+    justify-content: center;
+}
+
 .about_section .img-box img {
-  max-width: 100%;
+  max-width: 300px;
+  height: auto;
+  border: 5px solid #00bbf0;
+  border-radius: 20%
+
 }
 
 .about_section .detail-box h3 {
@@ -517,7 +526,7 @@ a:focus {
   text-align: start;
 }
 
-.about_section .detail-box a {
+/*.about_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
   background-color: #00bbf0;
@@ -527,11 +536,8 @@ a:focus {
   transition: all 0.3s;
   border: none;
   margin-top: 15px;
-}
+}*/
 
-.about_section .detail-box a:hover {
-  background-color: #007fa4;
-}
 /* end about section */
 
 /* start contact section */

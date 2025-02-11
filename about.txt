@@ -1,8 +1,8 @@
-Hi! I'm Lydia, an environmental data analyst based in Reston, VA with my husband and our cat. I discovered my passion for data analysis
+Welcome to my portfolio website! I'm an environmental data analyst based in Reston, VA with my husband and our cat. I discovered my passion for data analysis
 during my time at Timmons Group as a Project Engineer on the Economic Development team. That, combined with my B.S. in Biological Systems
 Engineering from Virginia Tech (go hokies!), has lead me to pursue a career in environmental data analysis.
 
 CHUNKMy husband and I moved to northern Virginia in August 2024, and since then I have been taking online courses on Udemy and Linkedin Learning
-to develop my data analysis skills, participating in professional development opportunities as candidate for the Hiring Our Heroes Military Spouse Fellowship,
-and volunteering with the Feline Foundation of Greater Washington and Pet FBI (Lost Cats Virginia), and exploring data through personal projects. Check
-them out on <a href="lydiak22.pythonanywhere.com/projects"> my projects page! </a>.
+to develop my data analysis skills, participating as candidate in the Hiring Our Heroes Military Spouse Career Accelerator Pilot (MSCAP) Fellowship,
+volunteering with the Feline Foundation of Greater Washington and Pet FBI, and exploring data through personal projects. Speaking of my personal projects,
+check out my favorite projects below or look at them all on

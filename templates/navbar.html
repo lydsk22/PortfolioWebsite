@@ -15,7 +15,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    {% for item in ["home", "about", "resume", "projects", "contact"] %}
+                    {% for item in ["home", "projects", "resume", "contact"] %}
                       {% if item == status %}
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ url_for(item) }}">{{item}}</a>
