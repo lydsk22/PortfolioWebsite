@@ -1,9 +1,0 @@
-1)found website template on finexo
-2)combined template with blog from 100 days of python day 71
-3)changed functions/titles of .html docs to my website's tabs (about, resume, projects, contact, etc.)
-4)made header, navbar, footer, and footer_info .htmls to use with bootstrap in each page's html
-5)added pdf as embedded and download on resume page
-6)working on styling
-    6a) mapped existing colors (primary1, primary 2, etc.) and explored them in style.css, style.scss, and bootstrap.css)
-    6b) when testing new colors checked them against accessibility testing tool (html_codesniffer and https://www.siegemedia.com/contrast-ratio) for a contrast ratio of 7:1
-    6c) recorded accessibility testing as I went (access.txt)

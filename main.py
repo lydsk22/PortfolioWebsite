@@ -53,8 +53,15 @@ class Project(db.Model):
 	category: Mapped[str] = mapped_column(String(30), nullable=False)
 	date_finished: Mapped[str] = mapped_column(String(250), nullable=False)
 	description: Mapped[str] = mapped_column(Text, nullable=False)
+	goal: Mapped[str] = mapped_column(String(250), nullable=True)
+	methods: Mapped[str] = mapped_column(String(250), nullable=True)
+	challenges: Mapped[str] = mapped_column(String(250), nullable=True)
+	tools: Mapped[str] = mapped_column(String(250), nullable=True)
+	sources: Mapped[str] = mapped_column(String(250), nullable=True)
+	improvements: Mapped[str] = mapped_column(String(250), nullable=True)
 	tags: Mapped[str] = mapped_column(Text, nullable=True)
 	img_url: Mapped[str] = mapped_column(String(250), nullable=False)
+	img_alt_text: Mapped[str] = mapped_column(String(250), nullable=True)
 	github_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
@@ -68,8 +75,15 @@ class CreateProjectForm(FlaskForm):
 						   )
 	date_finished = StringField("Date Completed (mm-yyyy)")
 	description = CKEditorField("Project Description", validators=[DataRequired()])
+	goal = CKEditorField("Project Goal / Why This Project")
+	methods = CKEditorField("Project Methods")
+	challenges = CKEditorField("Project's Greatest Challenge")
+	tools = CKEditorField("Tools Used to Complete the Project")
+	sources = CKEditorField("Project Data Sources")
+	improvements = CKEditorField("Future Improvements")
 	tags = StringField("Project Tags (separate with ','")
 	img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
+	img_alt_text = StringField("Alt Text for Image", validators=[DataRequired()])
 	github_url = URLField("Github URL")
 	submit = SubmitField("Submit Project")
 
@@ -101,8 +115,8 @@ def check_pw(func):
 @app.route('/')
 def home():
 	# for pythonanywhere
-	# with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
-	with open("about.txt", mode="r") as about_file:
+	with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
+	#with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
 	result = db.session.execute(db.select(Project))
@@ -139,6 +153,12 @@ def add_project():
 				category=form.category.data,
 				date_finished=form.date_finished.data,
 				description=form.description.data,
+				goal=form.goal.data,
+				methods=form.methods.data,
+				challenges=form.challenges.data,
+				tools=form.tools.data,
+				sources=form.sources.data,
+				improvements=form.improvements.data,
 				tags=form.tags.data,
 				img_url=form.img_url.data,
 				img_alt_text=form.img_alt_text.data,
@@ -160,6 +180,12 @@ def edit_project(project_id):
 			category=project.category,
 			date_finished=project.date_finished,
 			description=project.description,
+			goal=project.goal,
+			methods=project.methods,
+			challenges=project.challenges,
+			tools=project.tools,
+			sources=project.sources,
+			improvements=project.improvements,
 			tags=project.tags,
 			img_url=project.img_url,
 			img_alt_text=project.img_alt_text,
@@ -171,6 +197,12 @@ def edit_project(project_id):
 		project.category = edit_form.category.data
 		project.date_finished = edit_form.date_finished.data
 		project.description = edit_form.description.data
+		project.goal = edit_form.goal.data
+		project.methods = edit_form.methods.data
+		project.challenges = edit_form.challenges.data
+		project.tools = edit_form.tools.data
+		project.sources = edit_form.sources.data
+		project.improvements = edit_form.improvements.data
 		project.tags = edit_form.tags.data
 		project.img_url = edit_form.img_url.data
 		project.img_alt_text = edit_form.img_alt_text.data
