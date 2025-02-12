@@ -660,8 +660,6 @@ a:focus {
   margin: 10px;
 }
 
-
-
 .project_section .project_container .box  h4 {
   color: #ffffff;
   position: relative;
@@ -698,6 +696,22 @@ a:focus {
 .project_section .project_container .mb-3 .form-label{
   margin: 10px 0 0px 0;
 
+}
+
+.project_section .detail-box a {
+  display: inline-block;
+  padding: 10px 45px;
+  background-color: #00bbf0;
+  color: #ffffff;
+  border-radius: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: none;
+  margin-top: 15px;
+}
+
+.about_section .detail-box a:hover {
+  background-color: #007fa4;
 }
 
 /* end project section*/

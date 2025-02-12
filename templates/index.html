@@ -8,24 +8,22 @@
     {% include "navbar.html" %}
 </div>
 <div class="row justify-content-md-center">
+    <!--left area-->
     <div class="col col-lg-3">
-
     </div>
-    <div class="col-md-auto">
-        <!-- about section -->
 
+    <!--main / central area-->
+    <div class="col-md-auto">
+
+        <!-- about section -->
         <section class="about_section layout_padding">
             <div class="heading_container heading_center">
                 <h2>
                     <span>Hi! I'm Lydia</span>
                 </h2>
-
             </div>
 
-            {% for chunk in about_text%}
-
             <div class="row justify-content-md-center">
-                {% if loop.index0 % 2 == 0 %}
                 <div class="col-md-4">
                     <div class="img-box">
                         <img src="static/images/me.jpg" alt="Lydia Kidwell's headshot">
@@ -34,15 +32,23 @@
                 <div class="col-md-6">
                     <div class="detail-box">
                         <p>
-                            {{chunk}}
+                            Welcome to my portfolio website! I'm an environmental data analyst living in Reston, VA with
+                            my husband and our cat. I discovered my passion for data analysis
+                            during my time at Timmons Group as a Project Engineer on the Economic Development team.
+                            That, combined with my B.S. in Biological Systems
+                            Engineering from Virginia Tech (go hokies!), has lead me to pursue a career in environmental
+                            data analysis.
+
                         </p>
                     </div>
                 </div>
-                {% else %}
                 <div class="col-md-6">
                     <div class="detail-box">
                         <p>
-                            {{chunk}}
+                            My husband and I moved to northern Virginia in August 2024, and I took that as an opportunity to pivot from civil engineering to data analysis.
+                            Since then, I have been taking online courses on Udemy and Linkedin Learning to develop my data analysis skills, participating as candidate in the
+                            Hiring Our Heroes Military Spouse Career Accelerator Pilot (MSCAP) Fellowship, volunteering with the Feline Foundation of Greater Washington and Pet FBI,
+                            and exploring data through personal projects. Speaking of my personal projects, check out my favorite projects below or look at them all on
                             <a href="lydiak22.pythonanywhere.com/projects">my projects page!</a>
                         </p>
                     </div>
@@ -55,87 +61,81 @@
                                 I'm working.
                             </figcaption>
                         </figure>
-
                     </div>
                 </div>
-                {% endif %}
             </div>
-
-            {% endfor %}
-
         </section>
 
         <!-- end about section -->
         <section class="project_section layout_padding">
-    <div class="container-fluid">
-        <div class="heading_container heading_center">
-            <h2>
-                <span>Featured Projects</span>
-            </h2>
+            <div class="container-fluid">
+                <div class="heading_container heading_center">
+                    <h2>
+                        <span>Featured Projects</span>
+                    </h2>
 
-        </div>
+                </div>
 
-        <div class="project_container">
-            <div class="row">
-                {% for project in all_projects %}
-                {% if project.id == 2 or project.id == 3%}
-                <div class="col-lg-6 col-sm-12">
-                    <div class="box">
-                        <div class="row">
+                <div class="project_container">
+                    <div class="row">
+                        {% for project in all_projects %}
+                        {% if project.id == 2 or project.id == 3%}
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="box">
+                                <div class="row">
 
-                            <div>
-                                {% if project.subtitle is sameas None %}
+                                    <div>
+                                        {% if project.subtitle is sameas None %}
 
-                                <h4>
-                                    {{project.title}}
-                                </h4>
-                                {%else%}
-                                <h4>
-                                    {{project.title}}:
-                                </h4>
-                                <h5>
-                                    {{project.subtitle}}
-                                </h5>
-                                {% endif %}
-                            </div>
-                        </div>
-                            <div class="row">
-                                <div class="img-box">
-                                    <img src={{project.img_url}} class="img2"
-                                         alt={{project.img_alt_text}}>
+                                        <h4>
+                                            {{project.title}}
+                                        </h4>
+                                        {%else%}
+                                        <h4>
+                                            {{project.title}}:
+                                        </h4>
+                                        <h5>
+                                            {{project.subtitle}}
+                                        </h5>
+                                        {% endif %}
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="img-box">
+                                        <img src={{project.img_url}} class="img2"
+                                             alt={{project.img_alt_text}}>
+                                    </div>
                                     {{' '.join(project.description.strip().split()[:30])|safe}}...
 
                                     <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+                                </div>
+                                <div class="project-date">
+                                    <p>
+                                        {% if project.date_finished == "": %}
+                                        Not Yet Completed
+                                        {%else%}
+                                        Completed {{project.date_finished}}
+                                        {% endif %}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="project-date">
-                                <p>
-                                    {% if project.date_finished == "": %}
-                                    Not Yet Completed
-                                    {%else%}
-                                    Completed {{project.date_finished}}
-                                    {% endif %}
-                                </p>
-                            </div>
-
-
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-                {%endif%}
-                {% endfor %}
-
             </div>
-        </div>
-    </div>
-</section>
+        </section>
         <!--start project section-->
 
         <!-- end project section -->
 
     </div>
-    <div class="col col-lg-3">
 
+    <!--right space-->
+    <div class="col col-lg-3">
     </div>
+
 </div>
 <!--footer-->
 {% include "footer.html" %}
