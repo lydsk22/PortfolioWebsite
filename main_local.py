@@ -80,7 +80,7 @@ class CreateContactForm(FlaskForm):
 
 
 # site_password = os.getenv('SECRET_URL')
-site_password = "MySecretURL123!"
+
 
 # custom decorator to check password
 def check_pw(func):
