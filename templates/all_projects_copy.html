@@ -33,8 +33,7 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="box">
                         <div class="row">
-
-                            <div>
+                            <div class="title">
                                 {% if project.subtitle is sameas None %}
 
                                 <h4>
@@ -50,24 +49,34 @@
                                 {% endif %}
                             </div>
                         </div>
-                            <div class="row">
-                                <div class="img-box">
-                                    <img src={{project.img_url}} class="img2"
-                                         alt={{project.img_alt_text}}>
-                                </div>
-                                    {{' '.join(project.description.strip().split()[:10])|safe}}...
+                        <div class="row">
+                            <div class="img-box">
+                                <img src={{project.img_url}} class="img2"
+                                     alt={{project.img_alt_text}}>
+                            </div>
+                            {% if project.goal is sameas None %}
 
-                                    <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
-                            </div>
-                            <div class="project-date">
-                                <p>
-                                    {% if project.date_finished == "": %}
-                                    Not Yet Completed
-                                    {%else%}
-                                    Completed {{project.date_finished}}
-                                    {% endif %}
-                                </p>
-                            </div>
+                                {{' '.join(project.description.strip().split()[:30])|safe}}...
+
+                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+
+                            {% else %}
+                            <p>
+                                {{' '.join(project.goal.strip().split()[:30])|safe}}...
+
+                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+                            </p>
+                            {%endif%}
+                        </div>
+                        <div class="project-date">
+                            <p>
+                                {% if project.date_finished == "": %}
+                                Not Yet Completed
+                                {%else%}
+                                Completed {{project.date_finished}}
+                                {% endif %}
+                            </p>
+                        </div>
 
 
                     </div>

@@ -41,6 +41,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = SQLAlCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 280}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app, model_class=Base)
+
+
 # db.init_app(app)
 
 
@@ -116,7 +118,7 @@ def check_pw(func):
 def home():
 	# for pythonanywhere
 	with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
-	#with open("about.txt", mode="r") as about_file:
+		# with open("about.txt", mode="r") as about_file:
 		# create a list of paragraphs for the about section
 		about_text = about_file.read().split("CHUNK")
 	result = db.session.execute(db.select(Project))
@@ -148,22 +150,22 @@ def add_project():
 	form = CreateProjectForm()
 	if form.validate_on_submit():
 		new_project = Project(
-				title=form.title.data,
-				subtitle=form.subtitle.data,
-				category=form.category.data,
-				date_finished=form.date_finished.data,
-				description=form.description.data,
-				goal=form.goal.data,
-				methods=form.methods.data,
-				challenges=form.challenges.data,
-				tools=form.tools.data,
-				sources=form.sources.data,
-				improvements=form.improvements.data,
-				tags=form.tags.data,
-				img_url=form.img_url.data,
-				img_alt_text=form.img_alt_text.data,
-				github_url=form.github_url.data
-				)
+			title=form.title.data,
+			subtitle=form.subtitle.data,
+			category=form.category.data,
+			date_finished=form.date_finished.data,
+			description=form.description.data,
+			goal=form.goal.data,
+			methods=form.methods.data,
+			challenges=form.challenges.data,
+			tools=form.tools.data,
+			sources=form.sources.data,
+			improvements=form.improvements.data,
+			tags=form.tags.data,
+			img_url=form.img_url.data,
+			img_alt_text=form.img_alt_text.data,
+			github_url=form.github_url.data
+		)
 		db.session.add(new_project)
 		db.session.commit()
 		return redirect(url_for("show_project", project_id=new_project.id))
@@ -175,22 +177,22 @@ def add_project():
 def edit_project(project_id):
 	project = db.get_or_404(Project, project_id)
 	edit_form = CreateProjectForm(
-			title=project.title,
-			subtitle=project.subtitle,
-			category=project.category,
-			date_finished=project.date_finished,
-			description=project.description,
-			goal=project.goal,
-			methods=project.methods,
-			challenges=project.challenges,
-			tools=project.tools,
-			sources=project.sources,
-			improvements=project.improvements,
-			tags=project.tags,
-			img_url=project.img_url,
-			img_alt_text=project.img_alt_text,
-			github_url=project.github_url
-			)
+		title=project.title,
+		subtitle=project.subtitle,
+		category=project.category,
+		date_finished=project.date_finished,
+		description=project.description,
+		goal=project.goal,
+		methods=project.methods,
+		challenges=project.challenges,
+		tools=project.tools,
+		sources=project.sources,
+		improvements=project.improvements,
+		tags=project.tags,
+		img_url=project.img_url,
+		img_alt_text=project.img_alt_text,
+		github_url=project.github_url
+	)
 	if edit_form.validate_on_submit():
 		project.title = edit_form.title.data
 		project.subtitle = edit_form.subtitle.data
@@ -218,10 +220,10 @@ def edit_project(project_id):
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
-	requested_project = db.get_or_404(entity=Project, ident=project_id, description="This project does not exist.")
+	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements"]
+	requested_project = db.get_or_404(entity=Project, ident=project_id)
 
-	return render_template("project.html", project=requested_project, status="projects")
-
+	return render_template("project.html", project=requested_project, status="projects", description_components=description_components)
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
