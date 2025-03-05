@@ -79,7 +79,7 @@ class CreateContactForm(FlaskForm):
 	submit = SubmitField("Submit Message")
 
 
-site_password = os.getenv('SECRET_URL')
+# site_password = os.getenv('SECRET_URL')
 
 
 # custom decorator to check password

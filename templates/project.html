@@ -20,32 +20,48 @@
     <div class="container-fluid">
         <div class="heading_container heading_center">
             <h2>
-                {{project.title}}
+                <span>{{project.title}}</span>
             </h2>
-            <h5>
-                {% if project.date_finished == "":%}
-                Not Yet Completed
-                {% else %}
-                Completed {{project.date_finished}}
-                {% endif %}
-            </h5>
-        </div>
-        <div class="row box">
-
-            {{project.description|safe}}
-
-        </div>
-
-        <div class="row box">
-            <div class="col-lg-12">
-                <div class="img-box">
-                    <a href="">
-                        <img src={{project.img_url}} class="img1"
-                             alt={{project.img_alt_text}}>
-                    </a>
+            <div class="row box">
+                <div class="col-lg-12">
+                    <div class="img-box">
+                        <a href="">
+                            <img src={{project.img_url}} class="img1"
+                                 alt={{project.img_alt_text}}>
+                        </a>
+                    </div>
                 </div>
             </div>
+
         </div>
+        {% if project.goal is sameas None %}
+        <div class="row box">
+            {{project.description|safe}}
+        </div>
+        {% else %}
+        {% for component in description_components %}
+        <div class="row">
+            <div class="col-md-3">
+                <h4>{{component}}:</h4>
+            </div>
+
+            <div class="col-md-9">
+                {% if component == "Tools" %}
+                    <ul>
+                        {% for tool in project[component.lower()].split(";") %}
+                        <li>{{tool}}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{{project[component.lower()]}}</p>
+                {% endif %}
+            </div>
+
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
 
         <div class="row box">
             <div class="col-lg-12">

@@ -23,7 +23,7 @@
                 Lydia's <span>Projects</span>
             </h2>
             <h5>
-                Data Analysis, Web Design & Development, and Game Design
+                Data Analysis and Web Design & Development
             </h5>
         </div>
 
@@ -34,7 +34,6 @@
                     <div class="box">
                         <div>
                             {% if project.subtitle is sameas None %}
-
                             <h4>
                                 {{project.title}}
                             </h4>
@@ -50,12 +49,20 @@
                                 <img src={{project.img_url}} class="img2"
                                      alt={{project.img_alt_text}}>
                             </div>
+<!--                            {% if project.goal is sameas None %}-->
+<!--                            <p>-->
+<!--                                {{' '.join(project.description.strip().split()[:10])|safe}}...-->
 
-                            <p>
-                                {{' '.join(project.description.strip().split()[:10])|safe}}...
+<!--                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>-->
+<!--                            </p>-->
+<!--                            {% else %}-->
+<!--                            <p>-->
+<!--                                {{' '.join(project.goal.strip().split()[:10])|safe}}...-->
 
-                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
-                            </p>
+<!--                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>-->
+<!--                            </p>-->
+<!--                            {%endif%}-->
+                            <p>project.goal|safe</p>
                             <div class="project-date">
                                 <p>
                                     {% if project.date_finished == "": %}
