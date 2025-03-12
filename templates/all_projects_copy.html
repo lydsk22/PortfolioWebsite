@@ -56,27 +56,30 @@
                             </div>
                             {% if project.goal is sameas None %}
 
-                                {{' '.join(project.description.strip().split()[:30])|safe}}...
+                            {{' '.join(project.description.strip().split()[:30])|safe}}...
 
-                                <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+                            <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
 
                             {% else %}
                             <p>
-                                {{' '.join(project.goal.strip().split()[:30])|safe}}...
-
+                                {% if project.title is sameas "Coming Soon" %}
+                                {{' '.join(project.description.strip().split()[:24])|safe}}...
+                                {% else %}
+                                {{' '.join(project.description.strip().split()[:24])|safe}}...
                                 <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+                                {% endif %}
                             </p>
                             {%endif%}
                         </div>
-                        <div class="project-date">
-                            <p>
-                                {% if project.date_finished == "": %}
-                                Not Yet Completed
-                                {%else%}
-                                Completed {{project.date_finished}}
-                                {% endif %}
-                            </p>
-                        </div>
+                        <!--                        <div class="project-date">-->
+                        <!--                            <p>-->
+                        <!--                                {% if project.date_finished == "": %}-->
+                        <!--                                Not Yet Completed-->
+                        <!--                                {%else%}-->
+                        <!--                                Completed {{project.date_finished}}-->
+                        <!--                                {% endif %}-->
+                        <!--                            </p>-->
+                        <!--                        </div>-->
 
 
                     </div>

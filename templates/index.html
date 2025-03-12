@@ -113,9 +113,12 @@
                                 <img src={{project.img_url}} class="img2"
                                      alt={{project.img_alt_text}}>
                             </div>
+                            {% if project.title is sameas "Coming Soon" %}
                             {{' '.join(project.description.strip().split()[:24])|safe}}...
-
+                            {% else %}
+                            {{' '.join(project.description.strip().split()[:24])|safe}}...
                             <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+                            {% endif %}
                         </div>
 
                     </div>
