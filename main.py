@@ -116,14 +116,7 @@ def check_pw(func):
 
 @app.route('/')
 def home():
-	# for pythonanywhere
-	with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
-		# with open("about.txt", mode="r") as about_file:
-		# create a list of paragraphs for the about section
-		about_text = about_file.read().split("CHUNK")
-	result = db.session.execute(db.select(Project))
-	all_projects = result.scalars().all()
-	return render_template("index.html", status="home", about_text=about_text, all_projects=all_projects)
+	return render_template("index_allpages.html", status="home")
 
 
 @app.route("/resume", methods=["GET", "POST"])
