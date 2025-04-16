@@ -35,7 +35,7 @@ db.init_app(app)
 
 
 # Configure Project Table
-class Projects(db.Model):
+class Project(db.Model):
 	__tablename__ = "projects"
 	id: Mapped[int] = mapped_column(Integer, primary_key=True)
 	title: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
@@ -43,14 +43,16 @@ class Projects(db.Model):
 	category: Mapped[str] = mapped_column(String(30), nullable=False)
 	date_finished: Mapped[str] = mapped_column(String(250), nullable=False)
 	description: Mapped[str] = mapped_column(Text, nullable=False)
+	goal: Mapped[str] = mapped_column(String(250), nullable=True)
+	methods: Mapped[str] = mapped_column(String(250), nullable=True)
+	challenges: Mapped[str] = mapped_column(String(250), nullable=True)
+	tools: Mapped[str] = mapped_column(String(250), nullable=True)
+	sources: Mapped[str] = mapped_column(String(250), nullable=True)
+	improvements: Mapped[str] = mapped_column(String(250), nullable=True)
 	tags: Mapped[str] = mapped_column(Text, nullable=True)
 	img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 	img_alt_text: Mapped[str] = mapped_column(String(250), nullable=True)
 	github_url: Mapped[str] = mapped_column(String(250), nullable=False)
-
-
-with app.app_context():
-	db.create_all()
 
 
 # WTForm for creating a blog post
@@ -63,6 +65,12 @@ class CreateProjectForm(FlaskForm):
 						   )
 	date_finished = StringField("Date Completed (mm-yyyy)")
 	description = CKEditorField("Project Description", validators=[DataRequired()])
+	goal = CKEditorField("Project Goal / Why This Project")
+	methods = CKEditorField("Project Methods")
+	challenges = CKEditorField("Project's Greatest Challenge")
+	tools = CKEditorField("Tools Used to Complete the Project")
+	sources = CKEditorField("Project Data Sources")
+	improvements = CKEditorField("Future Improvements")
 	tags = StringField("Project Tags (separate with ','")
 	img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
 	img_alt_text = StringField("Alt Text for Image", validators=[DataRequired()])
@@ -79,7 +87,10 @@ class CreateContactForm(FlaskForm):
 	submit = SubmitField("Submit Message")
 
 
-# site_password = os.getenv('SECRET_URL')
+with app.app_context():
+	db.create_all()
+
+site_password = os.getenv('SECRET_URL')
 
 
 # custom decorator to check password
@@ -94,21 +105,22 @@ def check_pw(func):
 	return decorated_function
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def home():
-	# for pythonanywhere
-	# with open("/home/lydiak22/mysite/PortfolioWebsite/about.txt", mode="r") as about_file:
-	with open("about.txt", mode="r") as about_file:
-		# create a list of paragraphs for the about section
-		about_text = about_file.read().split("CHUNK")
-	result = db.session.execute(db.select(Projects))
+	#contact section
+	form = CreateContactForm()
+	if form.validate_on_submit():
+		send_email(form.name.data, form.email.data, form.phone.data, form.message.data)
+		return redirect(url_for("home"))
+	#project section
+	result = db.session.execute(db.select(Project))
 	all_projects = result.scalars().all()
-	return render_template("index.html", status="home", about_text=about_text, all_projects=all_projects)
+	return render_template("index_allpages.html", form=form, all_projects=all_projects)
 
-
-@app.route("/resume", methods=["GET", "POST"])
-def resume():
-	return render_template("resume.html", status="resume")
+#
+# @app.route("/resume", methods=["GET", "POST"])
+# def resume():
+# 	return render_template("resume.html", status="resume")
 
 
 @app.route('/download')
@@ -116,11 +128,11 @@ def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
 
 
-@app.route('/projects')
-def projects():
-	result = db.session.execute(db.select(Projects))
-	all_projects = result.scalars().all()
-	return render_template("all_projects_copy.html", all_projects=all_projects, status="projects")
+# @app.route('/projects')
+# def projects():
+# 	result = db.session.execute(db.select(Project))
+# 	all_projects = result.scalars().all()
+# 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
 
 
 # @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
@@ -129,7 +141,7 @@ def projects():
 def add_project():
 	form = CreateProjectForm()
 	if form.validate_on_submit():
-		new_project = Projects(
+		new_project = Project(
 				title=form.title.data,
 				subtitle=form.subtitle.data,
 				category=form.category.data,
@@ -149,7 +161,7 @@ def add_project():
 @app.route("/edit-project-<int:project_id>", methods=["GET", "POST"])
 @check_pw
 def edit_project(project_id):
-	project = db.get_or_404(Projects, project_id)
+	project = db.get_or_404(Project, project_id)
 	edit_form = CreateProjectForm(
 			title=project.title,
 			subtitle=project.subtitle,
@@ -182,8 +194,7 @@ def edit_project(project_id):
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
-	requested_project = db.get_or_404(entity=Projects, ident=project_id, description="This project does not exist.")
-
+	requested_project = db.get_or_404(entity=Project, ident=project_id, description="This project does not exist.")
 	return render_template("project.html", project=requested_project, status="projects")
 
 

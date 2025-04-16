@@ -2,13 +2,10 @@
 <!-- project section -->
 <section class="project_section layout_padding">
     <div class="container-fluid">
-        <div class="heading_container heading_center">
+        <div class="heading_container">
             <h2>
-                Lydia's <span>Projects</span>
+                Projects
             </h2>
-            <h5>
-                Data Analysis, Web Design & Development, and Game Design
-            </h5>
         </div>
 
         <div class="project_container">
@@ -20,16 +17,16 @@
                             <div class="title">
                                 {% if project.subtitle is sameas None %}
 
-                                <h4>
+                                <h3>
                                     {{project.title}}
-                                </h4>
+                                </h3>
                                 {%else%}
-                                <h4>
+                                <h3>
                                     {{project.title}}:
-                                </h4>
-                                <h5>
+                                </h3>
+                                <h4>
                                     {{project.subtitle}}
-                                </h5>
+                                </h4>
                                 {% endif %}
                             </div>
                         </div>

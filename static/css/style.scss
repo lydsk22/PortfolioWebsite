@@ -1,8 +1,11 @@
-$white: #ffffff;
-$black: #000000;
-$primary1: #00bbf0;
-$primary2: #00204a;
-$textCol: #1f1f1f;
+$white: #D5C3DF;
+$black: #1F1A38;
+$primary1: #1F1A38;  //dark blue
+$primary2: #D5C3DF;  //light purple
+$primary3: #DCEDF8;  //light blue
+$primary4: #4F9D69;  //medium green
+$primary5: #1B2D2A;  //dark green
+$textCol: #1F1A38;
 
 // import fonts - font-family: 'Open Sans', sans-serif;
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap");
@@ -32,8 +35,8 @@ $textCol: #1f1f1f;
 
 body {
   @include main-font;
-  color: #0c0c0c;
-  background-color: #ffffff;
+  color: $primary3;
+  background-color: $primary2;
   overflow-x: hidden;
 }
 
@@ -138,8 +141,6 @@ a:focus {
 .sub_page {
   .hero_area {
     min-height: auto;
-    background: linear-gradient(130deg, #231a6f, #0f054c);
-
     .hero_bg_box {
       display: none;
     }
@@ -160,7 +161,7 @@ a:focus {
   span {
     font-weight: bold;
     font-size: 24px;
-    color: $white;
+    color: $primary1;
   }
 }
 
@@ -173,7 +174,7 @@ a:focus {
     .nav-item {
       .nav-link {
         padding: 5px 20px;
-        color: $white;
+        color: $primary1;
         text-align: center;
         text-transform: uppercase;
         border-radius: 5px;
@@ -201,7 +202,7 @@ a:focus {
   height: 35px;
   padding: 0;
   border: none;
-  color: $white;
+  color: $primary1;
 
   &:hover {
     color: $primary1;
@@ -222,7 +223,7 @@ a:focus {
     display: block;
     width: 35px;
     height: 4px;
-    background-color: $white;
+    background-color: $primary1;
     margin: 7px 0;
     transition: all 0.3s;
     position: relative;
@@ -236,7 +237,7 @@ a:focus {
       left: 0;
       height: 100%;
       width: 100%;
-      background-color: $white;
+      background-color: $primary1;
       top: -10px;
       border-radius: 5px;
       transition: all 0.3s;
@@ -268,176 +269,9 @@ a:focus {
 
 /*end header section*/
 
-/* slider section */
-.slider_section {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 45px 0 145px 0;
+// intro section
+.intro_section {
 
-  .row {
-    align-items: center;
-  }
-
-  #customCarousel1 {
-    width: 100%;
-    position: unset;
-  }
-
-  .detail-box {
-    color: $primary2;
-
-    h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      color: $white;
-    }
-
-    p {
-      color: #fefefe;
-      font-size: 14px;
-    }
-
-    .btn-box {
-      display: flex;
-      margin: 0 -5px;
-      margin-top: 25px;
-
-      a {
-        margin: 5px;
-        text-align: center;
-        width: 165px;
-      }
-
-      .btn1 {
-        @include hero_btn($primary1, $white, 10px, 15px, 0);
-      }
-
-      .btn2 {
-        @include hero_btn($black, $white, 10px, 15px, 0);
-      }
-    }
-  }
-
-  .img-box {
-    margin: 45px 0;
-
-    img {
-      width: 100%;
-      animation: upDown 5s infinite;
-    }
-
-  }
-
-  @keyframes upDown {
-    0% {
-      transform: translateY(-45px);
-    }
-
-    50% {
-      transform: translateY(45px);
-    }
-
-    100% {
-      transform: translateY(-45px);
-    }
-  }
-
-  .carousel-indicators {
-    position: unset;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-
-    li {
-      background-color: $white;
-      width: 12px;
-      height: 12px;
-      border-radius: 100%;
-      opacity: 1;
-
-      &.active {
-        width: 20px;
-        height: 20px;
-        background-color: $primary1;
-      }
-    }
-  }
-}
-
-// end slider section
-
-// service section
-
-.service_section {
-  position: relative;
-
-  .box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 45px;
-    background-color: #f8f8f9;
-    padding: 20px;
-    border-radius: 5px;
-
-    .img-box {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 125px;
-      min-width: 75px;
-      height: 75px;
-      margin-bottom: 15px;
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        transition: all 0.3s;
-      }
-    }
-
-    .detail-box {
-      h5 {
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-
-      p {}
-
-      a {
-        color: $primary2;
-        font-weight: 600;
-
-        &:hover {
-          color: $primary1;
-        }
-      }
-    }
-
-  }
-
-  .btn-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 45px;
-
-    a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0);
-    }
-  }
-}
-
-// end service section
-
-// about section
-.about_section {
-  background-color: $primary2;
-  color: $white;
 
   .heading_container {
     margin-bottom: 45px;
@@ -463,7 +297,7 @@ a:focus {
     }
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0px);
+      @include hero_btn($primary1, $primary1, 10px, 45px, 0px);
       margin-top: 15px;
     }
   }
@@ -471,10 +305,47 @@ a:focus {
 
 // end about section
 
-// why section
+// about section
+.about_section {
+  background-color: $primary1;
+  color: $primary3;
+
+  .heading_container {
+    margin-bottom: 45px;
+  }
+
+  .row {
+    align-items: center;
+  }
+
+  .img-box {
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .detail-box {
+    h3 {
+      font-weight: bold;
+    }
+
+    p {
+      margin-top: 15px;
+    }
+
+    a {
+      @include hero_btn($primary1, $primary1, 10px, 45px, 0px);
+      margin-top: 15px;
+    }
+  }
+}
+
+// end about section
+
+
+// contact section
 
 .contact_section {
-
   .box {
     margin-top: 45px;
     display: flex;
@@ -517,19 +388,19 @@ a:focus {
     margin-top: 45px;
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 0);
+      @include hero_btn($primary2, $primary2, 10px, 45px, 0);
     }
   }
 }
 
-// end why section
+// end contact section
 
 /*project section */
 
 .project_section {
   text-align: center;
+  color: $primary1;
   background-color: $primary2;
-  color: $white;
 
   .heading_container {
     justify-content: center;
@@ -555,7 +426,7 @@ a:focus {
         img {
           width: 120px;
           border-radius: 100%;
-          border: 5px solid $white;
+          border: 5px solid $primary1;
         }
 
       }
@@ -577,7 +448,7 @@ a:focus {
         justify-content: space-between;
 
         a {
-          color: $white;
+          color: $primary1;
           font-size: 22px;
 
           &:hover {
@@ -593,95 +464,11 @@ a:focus {
 
 /*project section end*/
 
-/* client section start */
-
-.client_section {
-  .heading_container {
-    margin-bottom: 30px;
-  }
-
-  .box {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-
-    .img-box {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      margin-bottom: -50px;
-      margin-left: 25px;
-      position: relative;
-
-      img {
-        border-radius: 100%;
-      }
-    }
-
-    .client_id {
-      display: flex;
-      justify-content: space-between;
-
-      .client_info {
-        h6 {
-          font-weight: 600;
-          margin-bottom: 5px;
-        }
-
-        p {
-          margin-bottom: 0;
-          font-size: 15px;
-          font-size: 14px;
-          margin-bottom: 10px;
-        }
-      }
-    }
-
-    .detail-box {
-      background-color: $white;
-      box-shadow: 0 0 15px 0 rgba($color: #000000, $alpha: 0.15);
-      padding: 75px 25px 25px 25px;
-
-      i {
-        color: $primary2;
-        margin-bottom: 10px;
-      }
-    }
-  }
-
-  .owl-carousel {
-    .owl-nav {
-      display: flex;
-      justify-content: center;
-      margin-top: 45px;
-
-      .owl-prev,
-      .owl-next {
-        width: 55px;
-        height: 55px;
-        background-color: $white;
-        color: $black;
-        outline: none;
-        bottom: 0px;
-        font-size: 24px;
-        box-shadow: 0 0 5px 0 rgba($color: #000000, $alpha: 0.25);
-
-        &:hover {
-          color: $primary2;
-        }
-      }
-    }
-  }
-}
-
-/* client section end */
 
 // info section
 .info_section {
   background-color: $primary2;
-  color: $white;
+  color: $primary1;
   padding: 45px 0 15px 0;
 
   h4 {
@@ -700,7 +487,7 @@ a:focus {
 
       a {
         margin: 5px 0;
-        color: $white;
+        color: $primary1;
 
         i {
           margin-right: 5px;
@@ -722,7 +509,7 @@ a:focus {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $white;
+      color: $primary1;
       border-radius: 100%;
       margin-right: 10px;
       font-size: 24px;
@@ -742,7 +529,7 @@ a:focus {
       display: flex;
       align-items: center;
       margin-bottom: 15px;
-      color: $white;
+      color: $primary1;
 
       &:hover {
         color: $primary1;
@@ -753,22 +540,22 @@ a:focus {
   form {
     input {
       border: none;
-      border-bottom: 1px solid $white;
+      border-bottom: 1px solid $primary1;
       background-color: transparent;
       width: 100%;
       height: 45px;
-      color: $white;
+      color: $primary1;
       outline: none;
 
       &::placeholder {
-        color: $white;
+        color: $primary1;
       }
     }
 
     button {
       width: 100%;
       text-align: center;
-      @include hero_btn($primary1, $white, 10px, 55px, 0);
+      @include hero_btn($primary1, $primary1, 10px, 55px, 0);
       margin-top: 15px;
     }
   }
@@ -780,7 +567,7 @@ a:focus {
 
 .footer_section {
   position: relative;
-  background-color: $white;
+  background-color: $primary1;
   text-align: center;
 
   p {
