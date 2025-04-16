@@ -45,7 +45,6 @@ db = SQLAlchemy(app, model_class=Base)
 
 # db.init_app(app)
 
-
 # Configure Project Table
 class Project(db.Model):
 	__tablename__ = "projects"
@@ -83,7 +82,7 @@ class CreateProjectForm(FlaskForm):
 	tools = CKEditorField("Tools Used to Complete the Project")
 	sources = CKEditorField("Project Data Sources")
 	improvements = CKEditorField("Future Improvements")
-	tags = StringField("Project Tags (separate with ','")
+	tags = StringField("Project Tags (separate with ',')")
 	img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
 	img_alt_text = StringField("Alt Text for Image", validators=[DataRequired()])
 	github_url = URLField("Github URL")
@@ -98,6 +97,9 @@ class CreateContactForm(FlaskForm):
 	message = CKEditorField("Message", validators=[DataRequired()])
 	submit = SubmitField("Submit Message")
 
+
+with app.app_context():
+	db.create_all()
 
 site_password = os.getenv('SECRET_URL')
 
@@ -126,10 +128,10 @@ def home():
 	all_projects = result.scalars().all()
 	return render_template("index_allpages.html", form=form, all_projects=all_projects)
 
-
-@app.route("/resume", methods=["GET", "POST"])
-def resume():
-	return render_template("resume.html", status="resume")
+#
+# @app.route("/resume", methods=["GET", "POST"])
+# def resume():
+# 	return render_template("resume.html", status="resume")
 
 
 @app.route('/download')
@@ -137,11 +139,11 @@ def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
 
 
-@app.route('/projects')
-def projects():
-	result = db.session.execute(db.select(Project))
-	all_projects = result.scalars().all()
-	return render_template("all_projects_copy.html", all_projects=all_projects, status="projects")
+# @app.route('/projects')
+# def projects():
+# 	result = db.session.execute(db.select(Project))
+# 	all_projects = result.scalars().all()
+# 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
 
 
 # @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
@@ -217,17 +219,15 @@ def edit_project(project_id):
 
 	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
 
-
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
-	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements"]
+	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements", "Github"]
 	requested_project = db.get_or_404(entity=Project, ident=project_id)
 
 	return render_template("project.html", project=requested_project, status="projects",
 						   description_components=description_components
 						   )
-
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
@@ -238,7 +238,7 @@ def contact():
 	form = CreateContactForm()
 	if form.validate_on_submit():
 		send_email(form.name.data, form.email.data, form.phone.data, form.message.data)
-		return redirect(url_for("home"))
+		return redirect(url_for("contact", msg_sent=True, status="contact"))
 	return render_template("contact_form.html", form=form, msg_sent=False, status="contact")
 
 
@@ -265,6 +265,7 @@ def login():
 @app.context_processor
 def add_year():
 	return {"current_year": str(datetime.datetime.now().year)}
+
 
 
 if __name__ == "__main__":
