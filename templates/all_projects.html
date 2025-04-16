@@ -1,68 +1,50 @@
-
 <!-- project section -->
 <section class="project_section layout_padding">
     <div class="container-fluid">
         <div class="heading_container">
             <h2>
-                Projects
+                <span>Projects</span>
             </h2>
         </div>
 
-        <div class="project_container">
+        <div class="projects_container">
             <div class="row">
                 {% for project in all_projects %}
                 <div class="col-lg-6 col-sm-12">
                     <div class="box">
                         <div class="row">
-                            <div class="title">
-                                {% if project.subtitle is sameas None %}
 
-                                <h3>
-                                    {{project.title}}
-                                </h3>
-                                {%else%}
-                                <h3>
-                                    {{project.title}}:
-                                </h3>
-                                <h4>
-                                    {{project.subtitle}}
-                                </h4>
-                                {% endif %}
-                            </div>
+                            <h3>
+                                {{project.title}}:
+                            </h3>
+                            <h4>
+                                {{project.subtitle}}
+                            </h4>
                         </div>
-                        <div class="row">
-                            <div class="img-box">
-                                <img src={{project.img_url}} class="img2"
+
+                        <div class="row justify-content-md-center">
+
+                            <div class="img-box col">
+                                <img src={{project.img_url}}
                                      alt={{project.img_alt_text}}>
                             </div>
-                            {% if project.goal is sameas None %}
+                            <div class="col">
+                                {% if project.goal is sameas None %}
 
-                            {{' '.join(project.description.strip().split()[:30])|safe}}...
+                                {{' '.join(project.description.strip().split()[:30])|safe}}...
 
-                            <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
-
-                            {% else %}
-                            <p>
-                                {% if project.title is sameas "Coming Soon" %}
-                                {{' '.join(project.description.strip().split()[:24])|safe}}...
-                                {% else %}
-                                {{' '.join(project.description.strip().split()[:24])|safe}}...
                                 <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
-                                {% endif %}
-                            </p>
-                            {%endif%}
+
+                                {% else %}
+                                <p>
+
+                                    {{' '.join(project.description.strip().split()[:24])|safe}}...
+                                    <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
+
+                                </p>
+                                {%endif%}
+                            </div>
                         </div>
-                        <!--                        <div class="project-date">-->
-                        <!--                            <p>-->
-                        <!--                                {% if project.date_finished == "": %}-->
-                        <!--                                Not Yet Completed-->
-                        <!--                                {%else%}-->
-                        <!--                                Completed {{project.date_finished}}-->
-                        <!--                                {% endif %}-->
-                        <!--                            </p>-->
-                        <!--                        </div>-->
-
-
                     </div>
                 </div>
                 {% endfor %}

@@ -10,14 +10,6 @@ body {
   padding: 45px;
 }
 
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 0;
-    padding: 0;
-}
 .heading_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,13 +22,18 @@ hr {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .heading_container h2 {
   position: relative;
+}
+
+.heading_container h2 span{
+  position: relative;
   font-weight: bold;
 }
+
 
 a,
 a:hover,
@@ -380,25 +377,68 @@ a:focus {
   border-right: 2px solid #1F1A38;
 }
 
-.project_section .heading_container {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.project_section .project_page {
+  margin-bottom: 10px;
 }
 
-.project_section .project_container {
+.project_section .row {
+  margin: 10px 10px;
+  padding: 0px 50px;
+}
+
+.project_section h2 {
+  margin-bottom: 10px
+}
+.project_section h3 {
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.project_section p {
+  margin: 2px;
+  text-align: left;
+}
+
+.project_section li {
+  margin: 0;
+  text-align: left;
+}
+
+.project_section .projects_container {
   padding: 10px 10px 10px 10px;
 }
 
-.project_section .project_container .box {
+.project_section .projects_container .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.project_section .projects_container .box {
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
   overflow: hidden;
   -webkit-transition: all .1s;
   transition: all .1s;
   margin-bottom: 25px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#1B2D2A), to(#4F9D69));
-  background: linear-gradient(to bottom, #1B2D2A, #4F9D69);
+  background-color: #1B2D2A;
+  color: #ffffff;
+  border: 2px solid #1B2D2A;
+}
+
+.project_section .projects_container .box  h3 {
+  text-align: left;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.project_section .projects_container .box a {
+    color: #D5C3DF;
+}
+.project_section .projects_container .box a:hover {
+    color: #ffffff;
 }
 
 .project_section .project_container .box .img-box {
@@ -415,41 +455,8 @@ a:focus {
 
 .project_section .project_container .box .img-box img {
   max-width: 175px;
-  margin: 0px 15px;
+  margin: 15px;
   max-height: 100px;
-}
-
-.project_section .project_container .box .row {
-  flex-wrap: nowrap;
-  text-align: left;
-  margin: 10px;
-}
-
-.project_section .project_container .box  h3 {
-  color: #D5C3DF;
-  position: relative;
-}
-
-.project_section .project_container .box  h4 {
-  color: #4F9D69;
-  position: relative;
-}
-
-.project_section .project_container .box  p {
-  color: #D5C3DF;
-  margin: 0px 15px;
-  position: relative;
-}
-
-.project_section .detail-box a {
-  display: inline-block;
-  padding: 10px 45px;
-  color: #f9ecf9;
-  border-radius: 0px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: none;
-  margin-top: 15px;
 }
 /* end project section*/
 

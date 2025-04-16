@@ -71,7 +71,7 @@ class CreateProjectForm(FlaskForm):
 	tools = CKEditorField("Tools Used to Complete the Project")
 	sources = CKEditorField("Project Data Sources")
 	improvements = CKEditorField("Future Improvements")
-	tags = StringField("Project Tags (separate with ','")
+	tags = StringField("Project Tags (separate with ',')")
 	img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
 	img_alt_text = StringField("Alt Text for Image", validators=[DataRequired()])
 	github_url = URLField("Github URL")
@@ -147,6 +147,12 @@ def add_project():
 				category=form.category.data,
 				date_finished=form.date_finished.data,
 				description=form.description.data,
+				goal=form.goal.data,
+				methods=form.methods.data,
+				challenges=form.challenges.data,
+				tools=form.tools.data,
+				sources=form.sources.data,
+				improvements=form.improvements.data,
 				tags=form.tags.data,
 				img_url=form.img_url.data,
 				img_alt_text=form.img_alt_text.data,
@@ -168,6 +174,12 @@ def edit_project(project_id):
 			category=project.category,
 			date_finished=project.date_finished,
 			description=project.description,
+			goal=project.goal,
+			methods=project.methods,
+			challenges=project.challenges,
+			tools=project.tools,
+			sources=project.sources,
+			improvements=project.improvements,
 			tags=project.tags,
 			img_url=project.img_url,
 			img_alt_text=project.img_alt_text,
@@ -179,6 +191,12 @@ def edit_project(project_id):
 		project.category = edit_form.category.data
 		project.date_finished = edit_form.date_finished.data
 		project.description = edit_form.description.data
+		project.goal = edit_form.goal.data
+		project.methods = edit_form.methods.data
+		project.challenges = edit_form.challenges.data
+		project.tools = edit_form.tools.data
+		project.sources = edit_form.sources.data
+		project.improvements = edit_form.improvements.data
 		project.tags = edit_form.tags.data
 		project.img_url = edit_form.img_url.data
 		project.img_alt_text = edit_form.img_alt_text.data
@@ -190,13 +208,15 @@ def edit_project(project_id):
 
 	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
 
-
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
-	requested_project = db.get_or_404(entity=Project, ident=project_id, description="This project does not exist.")
-	return render_template("project.html", project=requested_project, status="projects")
+	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements", "Github"]
+	requested_project = db.get_or_404(entity=Project, ident=project_id)
 
+	return render_template("project.html", project=requested_project, status="projects",
+						   description_components=description_components
+						   )
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
