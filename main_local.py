@@ -208,7 +208,7 @@ def edit_project(project_id):
 
 	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
 
-# Add a POST method to be able to post comments
+
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
 	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements", "Github"]

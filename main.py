@@ -36,14 +36,11 @@ mysql_hostname = os.getenv('MYSQL_HOSTNAME')
 mysql_databasename = os.getenv('MYSQL_DATABASENAME')
 
 SQLAlCHEMY_DATABASE_URI = f"mysql+mysqldb://{mysql_username}:{mysql_password}@{mysql_hostname}/{mysql_databasename}"
-# print(SQLAlCHEMY_DATABASE_URI)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLAlCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_recycle': 280}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app, model_class=Base)
 
-
-# db.init_app(app)
 
 # Configure Project Table
 class Project(db.Model):
@@ -118,15 +115,16 @@ def check_pw(func):
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-	#contact section
+	# contact section
 	form = CreateContactForm()
 	if form.validate_on_submit():
 		send_email(form.name.data, form.email.data, form.phone.data, form.message.data)
 		return redirect(url_for("home"))
-	#project section
+	# project section
 	result = db.session.execute(db.select(Project))
 	all_projects = result.scalars().all()
 	return render_template("index_allpages.html", form=form, all_projects=all_projects)
+
 
 #
 # @app.route("/resume", methods=["GET", "POST"])
@@ -137,13 +135,6 @@ def home():
 @app.route('/download')
 def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
-
-
-# @app.route('/projects')
-# def projects():
-# 	result = db.session.execute(db.select(Project))
-# 	all_projects = result.scalars().all()
-# 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
 
 
 # @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
@@ -219,6 +210,7 @@ def edit_project(project_id):
 
 	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
 
+
 # Add a POST method to be able to post comments
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
 def show_project(project_id):
@@ -228,6 +220,7 @@ def show_project(project_id):
 	return render_template("project.html", project=requested_project, status="projects",
 						   description_components=description_components
 						   )
+
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
@@ -258,14 +251,13 @@ def login():
 			return redirect(request.url)
 		else:
 			session["status"] = 'good'
-			return redirect(url_for("projects"))
+			return redirect(url_for("home"))
 	return render_template('login.html')
 
 
 @app.context_processor
 def add_year():
 	return {"current_year": str(datetime.datetime.now().year)}
-
 
 
 if __name__ == "__main__":
