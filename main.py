@@ -125,13 +125,6 @@ def home():
 	all_projects = result.scalars().all()
 	return render_template("index_allpages.html", form=form, all_projects=all_projects)
 
-
-#
-# @app.route("/resume", methods=["GET", "POST"])
-# def resume():
-# 	return render_template("resume.html", status="resume")
-
-
 @app.route('/download')
 def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
@@ -224,9 +217,11 @@ def show_project(project_id):
 @app.route("/steve")
 def steve():
 	# Show directory contents
-	dir = "static/images/steve"
+	#need entire directory to list files
+	dir = "/home/lydiak22/mysite/PortfolioWebsite/static/images/steve"
 	files = os.listdir(dir)
-	files_list = [dir + "/" + file for file in files]
+	#need path just from static to actually display image
+	files_list = ["static/images/steve/" + file for file in files]
 	return render_template('steve.html', files=files_list)
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")

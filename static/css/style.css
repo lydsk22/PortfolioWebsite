@@ -331,6 +331,13 @@ a:focus {
   border: 3px solid #F5EEFF;
   border-radius: 5px;
 }
+.pdf {
+    -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+    aspect-ratio: 4/3;
+
+}
 /* end resume section */
 
 /* start project section */
@@ -403,7 +410,7 @@ a:focus {
     color: #ffffff;
 }
 
-.project_section .project_container .box .img-box {
+.project_section .img-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,10 +422,10 @@ a:focus {
           align-items: center;
 }
 
-.project_section .project_container .box .img-box img {
-  max-width: 175px;
+.project_section .img-box img {
+  max-width: 200px;
   margin: 15px;
-  max-height: 100px;
+  height: auto;
 }
 
 /* end project section*/
@@ -561,13 +568,27 @@ a:focus {
   border: 3px solid #1F1A38;
 }
 
-.pdf {
-    -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-    aspect-ratio: 4/3;
-
+.footer_section i {
+  padding: 10px 45px 20px 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
+.footer_section a {
+  color: #1B2D2A;
+  font-size: 22px;
+}
+
+.footer_section a:hover {
+  color: #4F9D69;
+}
+
+
+
 
 *, *:before, *:after {
 	 box-sizing: border-box;
