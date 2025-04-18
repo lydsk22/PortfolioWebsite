@@ -2,20 +2,22 @@
 
 <!-- contact section -->
 <section class="contact_section layout_padding">
-    <div class="heading_container">
-        <h2>
-            <span>Get in Touch</span>
-        </h2>
-        {% if msg_sent %}
-        <h3>
-            Your message has been sent!
-        </h3>
-        {% endif %}
-    </div>
-    <div class="contact_container">
-        {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
-        {{ ckeditor.config(name='description') }}
-        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    <div class="container-fluid-center">
+        <div class="heading_container">
+            <h2>
+                <span>Get in Touch</span>
+            </h2>
+            {% if msg_sent %}
+            <h3>
+                Your message has been sent!
+            </h3>
+            {% endif %}
+        </div>
+        <div class="contact_container">
+            {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+            {{ ckeditor.config(name='description') }}
+            {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        </div>
     </div>
 </section>
 

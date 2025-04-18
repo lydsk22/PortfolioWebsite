@@ -3,25 +3,20 @@
 <!-------body------>
 <body class="sub_page">
 
-<div class="hero_area">
+{% include "navbar_simple.html" %}
 
-    {% include "navbar_simple.html" %}
-</div>
+<section class="project_page_section layout_padding ">
+    <div class="container-fluid-center">
+        <div class="heading_container">
+            <h1>{{project.title}}</h1>
+            <h2>{{project.subtitle}}</h2>
 
-<section class="project_section layout_padding ">
-
-    <div class="heading_container project_page">
-        <h1>{{project.title}}</h1>
-        <h2>{{project.subtitle}}</h2>
-
-        <div class="img-box">
-            <img src={{project.img_url}}
-                 alt={{project.img_alt_text}}>
+            <div class="img-box">
+                <img src={{project.img_url}}
+                     alt={{project.img_alt_text}}>
+            </div>
         </div>
-    </div>
 
-
-    <div class="container-fluid">
 
         {% for component in description_components %}
         <div class="row">
@@ -31,17 +26,17 @@
 
             <div class="col-md-9">
                 {% if component == "Tools" %}
-                    <ul>
-                        {% for tool in project[component.lower()].split(";") %}
-                        <li>{{tool}}</li>
-                        {% endfor %}
-                    </ul>
+                <ul>
+                    {% for tool in project[component.lower()].split(";") %}
+                    <li>{{tool}}</li>
+                    {% endfor %}
+                </ul>
                 {% elif component == "Github" %}
-                    <p>See this project on
-                        <a href="{{ project.github_url }}">GitHub</a>
-                    </p>
+                <p>See this project on
+                    <a href="{{ project.github_url }}">GitHub</a>
+                </p>
                 {% else %}
-                    <p>{{project[component.lower()]}}</p>
+                <p>{{project[component.lower()]}}</p>
                 {% endif %}
 
             </div>

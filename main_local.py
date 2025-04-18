@@ -117,23 +117,9 @@ def home():
 	all_projects = result.scalars().all()
 	return render_template("index_allpages.html", form=form, all_projects=all_projects)
 
-#
-# @app.route("/resume", methods=["GET", "POST"])
-# def resume():
-# 	return render_template("resume.html", status="resume")
-
-
 @app.route('/download')
 def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
-
-
-# @app.route('/projects')
-# def projects():
-# 	result = db.session.execute(db.select(Project))
-# 	all_projects = result.scalars().all()
-# 	return render_template("all_projects.html", all_projects=all_projects, status="projects")
-
 
 # @app.route(f"/{os.getenv('SECRET_URL')}", methods=["GET", "POST"])
 @app.route("/add-project", methods=["GET", "POST"])
@@ -214,9 +200,15 @@ def show_project(project_id):
 	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements", "Github"]
 	requested_project = db.get_or_404(entity=Project, ident=project_id)
 
-	return render_template("project.html", project=requested_project, status="projects",
-						   description_components=description_components
-						   )
+	return render_template("project.html", project=requested_project,
+						   description_components=description_components)
+@app.route("/steve")
+def steve():
+	# Show directory contents
+	dir = "static/images/steve"
+	files = os.listdir(dir)
+	files_list = [dir + "/" + file for file in files]
+	return render_template('steve.html', files=files_list)
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
@@ -227,8 +219,8 @@ def contact():
 	form = CreateContactForm()
 	if form.validate_on_submit():
 		send_email(form.name.data, form.email.data, form.phone.data, form.message.data)
-		return redirect(url_for("contact", msg_sent=True, status="contact"))
-	return render_template("contact_form.html", form=form, msg_sent=False, status="contact")
+		return redirect(url_for("contact", msg_sent=True))
+	return render_template("contact_form.html", form=form, msg_sent=False)
 
 
 def send_email(name, email, phone, message):
