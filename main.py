@@ -221,6 +221,13 @@ def show_project(project_id):
 						   description_components=description_components
 						   )
 
+@app.route("/steve")
+def steve():
+	# Show directory contents
+	dir = "static/images/steve"
+	files = os.listdir(dir)
+	files_list = [dir + "/" + file for file in files]
+	return render_template('steve.html', files=files_list)
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
