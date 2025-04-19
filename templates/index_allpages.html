@@ -4,6 +4,8 @@
 <!-------body------>
 
 <body class="sub_page">
+<!--this line is to prevent FOUC (Flash of unstyled content) bug on firefox-->
+<script>0</script>
 {% include "navbar_simple.html" %}
 <main>
     <section class="intro_section layout_padding">
@@ -16,7 +18,8 @@
                         </h1>
                         <p>
                             I'm a Climate Data Analyst from northern Virginia with 2+ years of experience in civil
-                            engineering consulting, economic development, and data analysis. I'm passionate about sustainability,
+                            engineering consulting, economic development, and data analysis. I'm passionate about
+                            sustainability,
                             climate justice, and advancing climate action initiatives through data-driven solutions.
                         </p>
                     </div>
@@ -31,22 +34,22 @@
 
     </section>
 
-<!-- about section -->
-{% include "about.html" %}
-<!-- end about section -->
+    <!-- about section -->
+    {% include "about.html" %}
+    <!-- end about section -->
 
-<!--begin resume section-->
-{% include "resume.html" %}
-<!-- end resume section -->
+    <!--begin resume section-->
+    {% include "resume.html" %}
+    <!-- end resume section -->
 
-<!--begin project section-->
-{% include "all_projects.html" %}
-<!-- end projects section -->
+    <!--begin project section-->
+    {% include "all_projects.html" %}
+    <!-- end projects section -->
 
-<!--begin contact_form section-->
-{% include "contact_form.html" %}
-<!-- end contact_form section -->
-    </main>
+    <!--begin contact_form section-->
+    {% include "contact_form.html" %}
+    <!-- end contact_form section -->
+</main>
 </body>
 
 <!--footer-->
