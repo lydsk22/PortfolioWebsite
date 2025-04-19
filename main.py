@@ -125,6 +125,7 @@ def home():
 	all_projects = result.scalars().all()
 	return render_template("index_allpages.html", form=form, all_projects=all_projects)
 
+
 @app.route('/download')
 def download():
 	return send_from_directory('static', path="files/LydiaKidwell_Resume_2025.pdf")
@@ -199,9 +200,9 @@ def edit_project(project_id):
 
 		db.session.commit()
 
-		return redirect(url_for("show_project", project_id=project.id, status="projects"))
+		return redirect(url_for("show_project", project_id=project.id))
 
-	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
+	return render_template("add_project.html", form=edit_form, is_edit=True)
 
 
 # Add a POST method to be able to post comments
@@ -210,19 +211,19 @@ def show_project(project_id):
 	description_components = ["Goal", "Methods", "Challenges", "Tools", "Sources", "Improvements", "Github"]
 	requested_project = db.get_or_404(entity=Project, ident=project_id)
 
-	return render_template("project.html", project=requested_project, status="projects",
-						   description_components=description_components
-						   )
+	return render_template("project.html", project=requested_project, description_components=description_components)
+
 
 @app.route("/steve")
 def steve():
 	# Show directory contents
-	#need entire directory to list files
+	# need entire directory to list files
 	dir = "/home/lydiak22/mysite/PortfolioWebsite/static/images/steve"
 	files = os.listdir(dir)
-	#need path just from static to actually display image
+	# need path just from static to actually display image
 	files_list = ["static/images/steve/" + file for file in files]
 	return render_template('steve.html', files=files_list)
+
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
@@ -233,8 +234,8 @@ def contact():
 	form = CreateContactForm()
 	if form.validate_on_submit():
 		send_email(form.name.data, form.email.data, form.phone.data, form.message.data)
-		return redirect(url_for("contact", msg_sent=True, status="contact"))
-	return render_template("contact_form.html", form=form, msg_sent=False, status="contact")
+		return redirect(url_for("contact", msg_sent=True))
+	return render_template("contact_form.html", form=form, msg_sent=False)
 
 
 def send_email(name, email, phone, message):
