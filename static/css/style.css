@@ -71,126 +71,34 @@ a:focus {
 }
 
 .header_section {
-  padding: 15px 0;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
-}
-
-.header_section .container-fluid {
-  padding-right: 25px;
-  padding-left: 25px;
-
+  position: sticky;
+  left:0;
+  right: 0;
+  top:0;
+  z-index:100;
+  padding: 15px;
+  background: #F5EEFF;
+  color: #1B2D2A;
+  border: 3px solid #1B2D2A;
+  font-weight: bold;
+  font-size: 24px;
 }
 
 .navbar-brand span {
   font-weight: bold;
   font-size: 24px;
   color: #1B2D2A;
+  padding: 0px 25px;
 }
 
-.custom_nav-container {
-  padding: 0;
-}
-
-.custom_nav-container .navbar-nav {
-  margin-left: auto;
-}
-
-.custom_nav-container .navbar-nav .nav-item .nav-link {
-  padding: 5px 20px;
-  color: #f9ecf9;
-  text-align: center;
-  text-transform: uppercase;
-  border-radius: 5px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.custom_nav-container .navbar-nav .nav-item:hover .nav-link, .custom_nav-container .navbar-nav .nav-item.active .nav-link {
-  color: #54825D;
-}
-
-.custom_nav-container .navbar-nav .nav-item.active .nav-link {
-  font-weight: 600;
-}
-
-.custom_nav-container .nav_search-btn {
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
-  color: #f9ecf9;
-}
-
-.custom_nav-container .nav_search-btn:hover {
-  color: #54825D;
-}
-
-.custom_nav-container .navbar-toggler {
-  outline: none;
-}
-
-.custom_nav-container .navbar-toggler {
-  padding: 0;
-  width: 37px;
-  height: 42px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.custom_nav-container .navbar-toggler span {
-  display: block;
-  width: 35px;
-  height: 4px;
-  margin: 7px 0;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  position: relative;
-  border-radius: 5px;
-  transition: all 0.3s;
-}
-
-.custom_nav-container .navbar-toggler span::before, .custom_nav-container .navbar-toggler span::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  top: -10px;
-  border-radius: 5px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.custom_nav-container .navbar-toggler span::after {
-  top: 10px;
-}
-
-.custom_nav-container .navbar-toggler[aria-expanded="true"] {
-  -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
-
-.custom_nav-container .navbar-toggler[aria-expanded="true"] span {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.custom_nav-container .navbar-toggler[aria-expanded="true"] span::before, .custom_nav-container .navbar-toggler[aria-expanded="true"] span::after {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  top: 0;
-}
 /*end header section*/
 
 /* intro section */
 .intro_section {
   color: #F5EEFF;
   background-color: #1B2D2A;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
+  border-left: 3px solid #1B2D2A;
+  border-right: 3px solid #1B2D2A;
 }
 
 .intro_section .row {
@@ -242,9 +150,9 @@ a:focus {
 .about_section {
   color: #1B2D2A;
   background-color: #F5EEFF;
-  border-top: 2px solid #1F1A38;
-  border-left: 2px solid #1F1A38;
-  border-right: 2px solid #1F1A38;
+  border-top: 2px solid #1B2D2A;
+  border-left: 2px solid #1B2D2A;
+  border-right: 2px solid #1B2D2A;
 }
 
 .about_section .row {
@@ -294,9 +202,9 @@ a:focus {
   text-align: center;
   color: #F5EEFF;
   background-color: #1B2D2A;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
+  border-top: 3px solid #1B2D2A;
+  border-left: 3px solid #1B2D2A;
+  border-right: 3px solid #1B2D2A;
 }
 
 .resume_section .box {
@@ -345,9 +253,9 @@ a:focus {
   text-align: center;
   color: #1B2D2A;
   background-color: #F5EEFF;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
+  border-top: 3px solid #1B2D2A;
+  border-left: 3px solid #1B2D2A;
+  border-right: 3px solid #1B2D2A;
 }
 
 .project_section .row {
@@ -387,6 +295,7 @@ a:focus {
 
 .project_section .projects_container .box {
   padding: 20px 20px 20px 20px;
+  height: 290px;
   border-radius: 10px;
   overflow: hidden;
   -webkit-transition: all .1s;
@@ -401,6 +310,9 @@ a:focus {
   text-align: left;
   font-size: 1.75rem;
   margin: 0;
+}
+.project_section .projects_container .box  h4 {
+  text-align: left;
 }
 
 .project_section .projects_container .box a {
@@ -424,7 +336,6 @@ a:focus {
 
 .project_section .img-box img {
   max-width: 200px;
-  margin: 15px;
   height: auto;
 }
 
@@ -435,9 +346,9 @@ a:focus {
   text-align: center;
   background-color: #1B2D2A;
   color: #F5EEFF;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
+  border-top: 3px solid #1B2D2A;
+  border-left: 3px solid #1B2D2A;
+  border-right: 3px solid #1B2D2A;
 }
 
 .project_page_section heading_container {
@@ -487,9 +398,15 @@ a:focus {
 }
 
 .project_page_section .img-box img {
-  max-width: 175px;
+  max-width: 250px;
   margin: 15px;
-  max-height: 100px;
+  height: auto;
+}
+
+.project_page_section .img-box-big img{
+  max-width: 600px;
+  margin: 15px;
+  height: auto;
 }
 
 /* end project page section*/
@@ -499,9 +416,9 @@ a:focus {
 .contact_section {
   background-color: #1B2D2A;
   color: #ffffff;
-  border-top: 3px solid #1F1A38;
-  border-left: 3px solid #1F1A38;
-  border-right: 3px solid #1F1A38;
+  border-top: 3px solid #1B2D2A;
+  border-left: 3px solid #1B2D2A;
+  border-right: 3px solid #1B2D2A;
 }
 
 .contact_section h2{
@@ -563,9 +480,15 @@ a:focus {
 
 /* footer section*/
 .footer_section {
-  padding-top: 10px;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
   text-align: center;
-  border: 3px solid #1F1A38;
+  border: 3px solid #1B2D2A;
+  background-color: #F5EEFF;
+  color: #1B2D2A;
+  padding: 15px;
 }
 
 .footer_section i {
@@ -597,9 +520,9 @@ a:focus {
 .steve_section {
   background-color: #1B2D2A;
   color: #F5EEFF;
-  border-top: 2px solid #1F1A38;
-  border-left: 2px solid #1F1A38;
-  border-right: 2px solid #1F1A38;
+  border-top: 2px solid #1B2D2A;
+  border-left: 2px solid #1B2D2A;
+  border-right: 2px solid #1B2D2A;
 }
 
 .steve_section .row {

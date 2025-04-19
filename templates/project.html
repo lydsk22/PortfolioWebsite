@@ -11,10 +11,20 @@
             <h1>{{project.title}}</h1>
             <h2>{{project.subtitle}}</h2>
 
+
+            {% if project.id == 3%}
+            <div class="img-box-big">
+                <img src={{project.img_url}}
+                     alt="{{project.img_alt_text}}">
+            </div>
+
+            {% else %}
             <div class="img-box">
                 <img src={{project.img_url}}
-                     alt={{project.img_alt_text}}>
+                     alt="{{project.img_alt_text}}">
             </div>
+            {% endif %}
+
         </div>
 
 
@@ -36,7 +46,7 @@
                     <a href="{{ project.github_url }}">GitHub</a>
                 </p>
                 {% else %}
-                <p>{{project[component.lower()]}}</p>
+                <p>{{project[component.lower()]|safe}}</p>
                 {% endif %}
 
             </div>

@@ -190,9 +190,9 @@ def edit_project(project_id):
 
 		db.session.commit()
 
-		return redirect(url_for("show_project", project_id=project.id, status="projects"))
+		return redirect(url_for("show_project", project_id=project.id))
 
-	return render_template("add_project.html", form=edit_form, is_edit=True, status="projects")
+	return render_template("add_project.html", form=edit_form, is_edit=True)
 
 
 @app.route("/project-<int:project_id>", methods=["GET", "POST"])
