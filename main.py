@@ -224,6 +224,10 @@ def steve():
 	files_list = ["static/images/steve/" + file for file in files]
 	return render_template('steve.html', files=files_list)
 
+@app.route("/in-progress-img")
+def in_progress_img():
+	return render_template('in_progress_img.html')
+
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
