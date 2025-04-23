@@ -224,6 +224,12 @@ def steve():
 	files_list = ["static/images/steve/" + file for file in files]
 	return render_template('steve.html', files=files_list)
 
+@app.route("/certificates")
+def certificates():
+	# Show directory contents
+	dir = "static/images/certificates"
+	return render_template('steve.html', files=get_imgs_path(dir))
+
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
 
@@ -260,6 +266,11 @@ def login():
 @app.context_processor
 def add_year():
 	return {"current_year": str(datetime.datetime.now().year)}
+
+def get_imgs_path(directory):
+	files = os.listdir(directory)
+	files_list = [directory + "/" + file for file in files]
+	return files_list
 
 
 if __name__ == "__main__":
