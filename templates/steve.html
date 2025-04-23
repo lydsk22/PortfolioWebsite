@@ -15,10 +15,22 @@
 
             {% for img_path in files %}
             <div class="col-md-4">
-                <figure class="img-box">
-                    <img src={{img_path}}
-                         alt="Fluffy orange cat, Steve French, being cute">
-                </figure>
+                {% if "certificates" in img_path %}
+
+                    <figure class="img-box">
+                        <img src="{{img_path}}"
+                             alt="Certificates from online courses"
+                             style="border-radius:0%">
+                    </figure>
+
+                {% else %}
+
+                    <figure class="img-box">
+                        <img src="{{img_path}}"
+                             alt="Fluffy orange cat, Steve French, being cute">
+                    </figure>
+
+                {% endif %}
             </div>
             {% endfor %}
         </div>

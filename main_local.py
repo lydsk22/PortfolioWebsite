@@ -206,9 +206,13 @@ def show_project(project_id):
 def steve():
 	# Show directory contents
 	dir = "static/images/steve"
-	files = os.listdir(dir)
-	files_list = [dir + "/" + file for file in files]
-	return render_template('steve.html', files=files_list)
+	return render_template('steve.html', files=get_imgs_path(dir))
+
+@app.route("/certificates")
+def certificates():
+	# Show directory contents
+	dir = "static/images/certificates"
+	return render_template('steve.html', files=get_imgs_path(dir))
 
 MAIL_ADDRESS = os.getenv("MY_EMAIL")
 MAIL_APP_PW = os.getenv("EMAIL_APP_PASS")
@@ -239,13 +243,18 @@ def login():
 			return redirect(request.url)
 		else:
 			session["status"] = 'good'
-			return redirect(url_for("projects"))
+			return redirect(url_for("home"))
 	return render_template('login.html')
 
 
 @app.context_processor
 def add_year():
 	return {"current_year": str(datetime.datetime.now().year)}
+
+def get_imgs_path(directory):
+	files = os.listdir(directory)
+	files_list = [directory + "/" + file for file in files]
+	return files_list
 
 
 if __name__ == "__main__":

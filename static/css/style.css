@@ -189,15 +189,26 @@ a:focus {
   text-align: start;
 }
 
-.about_section a{
+.about_section #secret{
   margin-top: 15px;
   text-align: start;
   color: #1B2D2A;
 }
-.about_section a:hover{
+.about_section #secret:hover{
   margin-top: 15px;
   text-align: start;
   color: #4F9D69;
+}
+
+.about_section a{
+  margin-top: 15px;
+  text-align: start;
+  color: #4F9D69;
+}
+.about_section a:hover{
+  margin-top: 15px;
+  text-align: start;
+  color: #1B2D2A;
 }
 /* end about section */
 
@@ -527,12 +538,15 @@ a:focus {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+
+    img {
+      max-width: 300px;
+      height: auto;
+      border: 5px solid #F5EEFF;
+      border-radius: 20%;
+
+    }
 }
 
-.steve_section .img-box img {
-  max-width: 300px;
-  height: auto;
-  border: 5px solid #F5EEFF;
-  border-radius: 20%
-}
+
 /* end steve section */

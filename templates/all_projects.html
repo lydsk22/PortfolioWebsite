@@ -40,7 +40,7 @@
                                 {% else %}
                                 <p>
 
-                                    {{' '.join(project.goal.strip().split()[:24])|safe}}...
+                                    {{' '.join(project.goal.strip().split()[:20])|safe}}...
                                     <a href="{{url_for('show_project', project_id=project.id) }}">Read More</a>
 
                                 </p>
